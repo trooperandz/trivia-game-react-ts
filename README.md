@@ -1,6 +1,6 @@
-## React & TypeScript build with added liting and absolute imports
+## React & TypeScript build with added linting and absolute imports
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and the [TypeScript template](https://www.npmjs.com/package/cra-template-typescript).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and the [cra-template-typescript](https://www.npmjs.com/package/cra-template-typescript).
 
 #### Added support for the following tools:
 
