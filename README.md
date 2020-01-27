@@ -1,4 +1,4 @@
-## React - TypeScript - Styled Components starter with linting and absolute imports
+## React/TypeScript/Styled Components starter with linting and absolute imports
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and the [cra-template-typescript](https://www.npmjs.com/package/cra-template-typescript).
 
