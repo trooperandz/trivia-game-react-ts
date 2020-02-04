@@ -1,0 +1,34 @@
+/**
+ * Game notes
+ */
+
+ Website:
+  https://opentdb.com/api_config.php
+
+ API call:
+  https://opentdb.com/api.php?amount=10&category=18&difficulty=medium
+
+ # Questions:
+  5
+  10
+  15
+  20
+
+ Categories:
+  No Category
+  Science & Nature
+  Geography
+  History
+  Politics
+  Art
+  Mythology
+  Celebrities
+  Animals
+  Vehicles
+  Entertainment: Music
+  General Knowledge
+
+ difficulty
+  Easy
+  Medium
+  Hard
