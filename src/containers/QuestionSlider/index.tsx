@@ -1,66 +1,79 @@
 import React, { useState, useEffect } from 'react';
 
 import Question from 'components/Question';
-import ProgressBar from 'components/ProgressBar';
+import QuestionIndicator from 'components/QuestionIndicator';
 import { useWindowResize } from 'utils/hooks';
 import * as S from './styles';
 
 const questionData = [
   {
-    question: 'Billing',
-    step: 1,
+    question:
+      'How many licks does it take to get to the center of a tootsie roll pop?',
+    questionNumber: 1,
   },
   {
-    question: 'Shipping',
-    step: 2,
+    question: 'When was the U.S. civil war fought?',
+    questionNumber: 2,
   },
   {
-    question: 'Payment',
-    step: 3,
+    question: 'How many times does a human heart beat in an average lifetime?',
+    questionNumber: 3,
   },
   {
-    question: 'Confirmation',
-    step: 4,
+    question: 'How many software developers are there in the United States?',
+    questionNumber: 4,
   },
 ];
 
 const QuestionSlider = (props: any) => {
   const [horizontalPosition, setHorizontalPosition] = useState(0);
+  const [questionNumber, setQuestionNumber] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [step, setStep] = useState(0);
   // @ts-ignore
   const { viewportWidth } = useWindowResize();
 
   useEffect(() => {
-    setHorizontalPosition(-viewportWidth * step);
+    setHorizontalPosition(-viewportWidth * questionNumber);
   }, [viewportWidth]);
 
   console.log({ viewportWidth });
 
   const handleSubmit = (questionStep: number) => {
     setIsProcessing(true);
-    console.log('handle submit clicked');
+
     setTimeout(() => {
       setIsProcessing(false);
-      setStep(questionStep);
+      setQuestionNumber(questionStep);
       setHorizontalPosition(-viewportWidth * questionStep);
-    }, 850);
+    }, 650);
+  };
+
+  const handleProgressClick = (questionStep: number) => {
+    setQuestionNumber(questionStep);
+    setHorizontalPosition(-viewportWidth * questionStep);
   };
 
   return (
     <S.Wrapper>
-      <ProgressBar step={step} questionData={questionData} />
+      <QuestionIndicator
+        questionNumber={questionNumber}
+        questionData={questionData}
+        handleProgressClick={handleProgressClick}
+      />
       <S.SliderContainer horizontalPosition={horizontalPosition}>
-        {questionData.map((question: any) => (
-          <Question
-            key={question.step}
-            step={question.step}
-            question={question.question}
-            viewportWidth={viewportWidth}
-            handleSubmit={handleSubmit}
-            isProcessing={isProcessing}
-          />
-        ))}
+        {questionData.map((item: any) => {
+          const { questionNumber, question } = item;
+          return (
+            <Question
+              key={questionNumber}
+              questionNumber={questionNumber}
+              question={question}
+              viewportWidth={viewportWidth}
+              handleSubmit={handleSubmit}
+              isProcessing={isProcessing}
+            />
+          );
+        })}
       </S.SliderContainer>
     </S.Wrapper>
   );

@@ -4,13 +4,19 @@ import Button from 'components/Button';
 import * as S from './styles';
 
 const Question = (props: any) => {
-  const { viewportWidth, handleSubmit, question, step, isProcessing } = props;
+  const {
+    viewportWidth,
+    handleSubmit,
+    question,
+    questionNumber,
+    isProcessing,
+  } = props;
 
   return (
     <S.Container width={viewportWidth}>
-      <p>{question}</p>
+      <S.Question>{question}</S.Question>
       <Button
-        step={step}
+        questionNumber={questionNumber}
         isProcessing={isProcessing}
         handleSubmit={handleSubmit}
       >

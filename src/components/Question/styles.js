@@ -22,3 +22,8 @@ export const Container = styled.div.attrs(props => ({
     margin-right: 0;
   }
 `;
+
+export const Question = styled.div`
+  padding: 24px;
+  max-width: 600px;
+`;

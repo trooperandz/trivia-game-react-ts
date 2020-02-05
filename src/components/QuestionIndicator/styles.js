@@ -15,9 +15,10 @@ export const Container = styled.div`
   color: #000;
   padding: 0 24px;
   border-radius: 6px;
+  z-index: 1;
 `;
 
-export const Status = styled.p.attrs(props => ({
+export const QuestionNumber = styled.p.attrs(props => ({
   isActive: props.isActive,
 }))`
   color: ${props => (props.isActive ? '#4aa' : 'gray')};
