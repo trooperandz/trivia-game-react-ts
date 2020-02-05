@@ -3,27 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Question from 'components/Question';
 import QuestionIndicator from 'components/QuestionIndicator';
 import { useWindowResize } from 'utils/hooks';
+import { questionData } from 'utils/api';
 import * as S from './styles';
-
-const questionData = [
-  {
-    question:
-      'How many licks does it take to get to the center of a tootsie roll pop?',
-    questionNumber: 1,
-  },
-  {
-    question: 'When was the U.S. civil war fought?',
-    questionNumber: 2,
-  },
-  {
-    question: 'How many times does a human heart beat in an average lifetime?',
-    questionNumber: 3,
-  },
-  {
-    question: 'How many software developers are there in the United States?',
-    questionNumber: 4,
-  },
-];
 
 const QuestionSlider = (props: any) => {
   const [horizontalPosition, setHorizontalPosition] = useState(0);
