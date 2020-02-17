@@ -27,7 +27,7 @@ export const Question: FC<Question> = props => {
 
   return (
     <S.Container width={viewportWidth}>
-      <S.Question>{question}</S.Question>
+      <S.Question dangerouslySetInnerHTML={{ __html: question }} />
       <Button handleSubmit={handleButtonClick}>
         {isProcessing ? <SpinnerBalls /> : 'Proceed'}
       </Button>

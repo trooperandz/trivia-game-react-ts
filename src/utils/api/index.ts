@@ -1,27 +1,5 @@
 import axios from 'axios';
 
-import { FormValues } from 'components/Form/types';
-
-export const questionData = [
-  {
-    question:
-      'How many licks does it take to get to the center of a tootsie roll pop?',
-    questionNumber: 1,
-  },
-  {
-    question: 'When was the U.S. civil war fought?',
-    questionNumber: 2,
-  },
-  {
-    question: 'How many times does a human heart beat in an average lifetime?',
-    questionNumber: 3,
-  },
-  {
-    question: 'How many software developers are there in the United States?',
-    questionNumber: 4,
-  },
-];
-
 export const categories = [
   { id: 9, name: 'General Knowledge' },
   { id: 10, name: 'Entertainment: Books' },
@@ -69,24 +47,3 @@ export const triviaAPI = axios.create({
   baseURL: 'https://opentdb.com/api.php',
   responseType: 'json',
 });
-
-// Example API response:
-const results = [
-  {
-    category: 'Entertainment: Books',
-    type: 'multiple',
-    difficulty: 'easy',
-    question:
-      'Which famous spy novelist wrote the childrens&#039; story &quot;Chitty-Chitty-Bang-Bang&quot;?',
-    correct_answer: 'Ian Fleming',
-    incorrect_answers: ['Joseph Conrad', 'John Buchan', 'Graham Greene'],
-  },
-  {
-    category: 'Entertainment: Television',
-    type: 'boolean',
-    difficulty: 'easy',
-    question: 'Klingons express emotion in art through opera and poetry.',
-    correct_answer: 'True',
-    incorrect_answers: ['False'],
-  },
-];

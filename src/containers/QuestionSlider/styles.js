@@ -11,6 +11,17 @@ export const Wrapper = styled.div`
   overflow: hidden;
 `;
 
+export const EmptyStateTitle = styled.h1`
+  font-size: 32px;
+  color: #4aa;
+`;
+
+export const Link = styled.p`
+  margin: 16px;
+  font-size: 18px;
+  color: gray;
+`;
+
 export const SliderContainer = styled.div.attrs(props => ({
   horizontalPosition: props.horizontalPosition,
 }))`

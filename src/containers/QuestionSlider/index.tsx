@@ -1,12 +1,13 @@
 import React, { useState, useEffect, FC } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { Header } from 'components/Header';
 import { Question } from 'components/Question';
 import { QuestionIndicator } from 'components/QuestionIndicator';
 import { State } from 'reducers/types';
+import { TriviaQuestion } from 'components/Question/types';
 import { useWindowResize } from 'utils/hooks';
-import { questionData } from 'utils/api';
 import * as S from './styles';
 
 const QuestionSlider: FC = () => {
@@ -18,6 +19,7 @@ const QuestionSlider: FC = () => {
   const triviaQuestions = useSelector(
     (state: State) => state.questions.triviaQuestions,
   );
+
   console.log({ triviaQuestions });
   useEffect(() => {
     setHorizontalPosition(-viewportWidth * questionNumber);
@@ -44,26 +46,36 @@ const QuestionSlider: FC = () => {
     <>
       <Header />
       <S.Wrapper>
-        <QuestionIndicator
-          questionNumber={questionNumber}
-          questionData={questionData}
-          handleProgressClick={handleProgressClick}
-        />
-        <S.SliderContainer horizontalPosition={horizontalPosition}>
-          {questionData.map((item: any) => {
-            const { questionNumber, question } = item;
-            return (
-              <Question
-                key={questionNumber}
-                questionNumber={questionNumber}
-                question={question}
-                viewportWidth={viewportWidth}
-                handleSubmit={handleSubmit}
-                isProcessing={isProcessing}
-              />
-            );
-          })}
-        </S.SliderContainer>
+        {triviaQuestions.length ? (
+          <>
+            <S.SliderContainer horizontalPosition={horizontalPosition}>
+              {triviaQuestions.map(
+                (triviaQuestion: TriviaQuestion, i: number) => (
+                  <Question
+                    key={questionNumber}
+                    questionNumber={i + 1}
+                    question={triviaQuestion.question}
+                    viewportWidth={viewportWidth}
+                    handleSubmit={handleSubmit}
+                    isProcessing={isProcessing}
+                  />
+                ),
+              )}
+            </S.SliderContainer>
+            <QuestionIndicator
+              questionNumber={questionNumber}
+              triviaQuestions={triviaQuestions}
+              handleProgressClick={handleProgressClick}
+            />
+          </>
+        ) : (
+          <>
+            <S.EmptyStateTitle>You have no questions!</S.EmptyStateTitle>
+            <S.Link>
+              Get some <Link to="/">here</Link>
+            </S.Link>
+          </>
+        )}
       </S.Wrapper>
     </>
   );

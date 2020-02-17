@@ -1,25 +1,21 @@
 import React, { FC } from 'react';
 
+import { TriviaQuestion } from 'components/Question/types';
+import { QuestionIndicatorType } from './types';
 import * as S from './styles';
 
-type QuestionIndicator = {
-  questionNumber: number;
-  questionData: any;
-  handleProgressClick: Function;
-};
-
-export const QuestionIndicator: FC<QuestionIndicator> = props => {
-  const { questionNumber, questionData, handleProgressClick } = props;
+export const QuestionIndicator: FC<QuestionIndicatorType> = props => {
+  const { questionNumber, triviaQuestions, handleProgressClick } = props;
 
   return (
     <S.Container>
-      {questionData.map((item: any) => (
+      {triviaQuestions.map((triviaQuestion: TriviaQuestion, i: number) => (
         <S.QuestionNumber
-          key={item.questionNumber}
-          onClick={() => handleProgressClick(item.questionNumber - 1)}
-          isActive={item.questionNumber === questionNumber + 1}
+          key={i}
+          onClick={() => handleProgressClick(i)}
+          isActive={i === questionNumber}
         >
-          {item.questionNumber}
+          {i + 1}
         </S.QuestionNumber>
       ))}
     </S.Container>

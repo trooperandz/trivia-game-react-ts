@@ -83,7 +83,7 @@ const Home: FC = props => {
     <>
       <Header />
       <S.Wrapper>
-        <S.Title>State your terms!</S.Title>
+        <S.Title>State your terms</S.Title>
         <S.Form onSubmit={handleSubmit}>
           {inputParams.map(params =>
             params.options ? (
