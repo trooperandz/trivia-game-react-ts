@@ -58,6 +58,10 @@ const QuestionSlider: FC = () => {
                     viewportWidth={viewportWidth}
                     handleSubmit={handleSubmit}
                     isProcessing={isProcessing}
+                    answerChoices={[
+                      ...triviaQuestion.incorrect_answers,
+                      triviaQuestion.correct_answer,
+                    ]}
                   />
                 ),
               )}
