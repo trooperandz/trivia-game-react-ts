@@ -1,7 +1,6 @@
 import React, { FC, useState, SyntheticEvent } from 'react';
-import { connect, useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { HomeType } from './types';
 import { FormValues, FormError } from 'components/Form/types';
 import { Select } from 'components/Form/Select';
 import { Input } from 'components/Form/Input';
@@ -25,20 +24,17 @@ const errorMessages = {
   difficulty: 'Please select a difficulty level',
 };
 
-const Home: FC<HomeType> = props => {
+const Home: FC = () => {
   const [formValues, setFormValues] = useState<FormValues>(initialFormValues);
   const [formErrors, setFormErrors] = useState<FormError>(initialFormValues);
 
-  const { onSubmitFormValues, reduxFormValues } = props;
+  const reduxFormValues = useSelector((state: any) => state.home.formValues);
+  const dispatch = useDispatch();
 
   console.log({ reduxFormValues });
 
   const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // const { firstName, amount, category, difficulty } = formValues;
-    console.log('clicked submit', e);
-    // validate and then send to trivia api for generating questions
-    // https://opentdb.com/api.php?amount=10&category=20&difficulty=easy
 
     let isError: boolean = false;
 
@@ -60,7 +56,7 @@ const Home: FC<HomeType> = props => {
     if (isError) {
       setFormErrors(errors);
     } else {
-      onSubmitFormValues(formValues);
+      dispatch(setValues(formValues));
     }
   };
 
@@ -104,14 +100,4 @@ const Home: FC<HomeType> = props => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  reduxFormValues: state.home.formValues,
-});
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    onSubmitFormValues: (values: FormValues) => dispatch(setValues(values)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
