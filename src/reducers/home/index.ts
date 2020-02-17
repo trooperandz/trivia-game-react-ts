@@ -6,7 +6,6 @@ import {
 
 const initialState = {
   formValues: {},
-  triviaQuestions: [],
   isLoading: false,
 };
 

@@ -3,16 +3,12 @@
  */
 
 import { triviaAPI } from 'utils/api';
-import { TriviaQuestion } from 'components/Question/types';
 import { LoadingState } from 'reducers/home/types';
 import { FormValues } from 'components/Form/types';
+import { setTriviaQuestions } from 'actions/questions';
 import { History } from 'history';
 import { Dispatch } from 'redux';
-import {
-  SET_FORM_VALUES,
-  SET_TRIVIA_QUESTIONS,
-  SET_IS_LOADING,
-} from 'actions/actionTypes';
+import { SET_FORM_VALUES, SET_IS_LOADING } from 'actions/actionTypes';
 
 /**
  * Save form values for main home form mount state
@@ -27,12 +23,12 @@ export const setValues = (formValues: FormValues) => {
 /**
  * Save trivia questions from API response
  */
-export const setTriviaQuestions = (triviaQuestions: TriviaQuestion[]) => {
-  return {
-    type: SET_TRIVIA_QUESTIONS,
-    payload: triviaQuestions,
-  };
-};
+// export const setTriviaQuestions = (triviaQuestions: TriviaQuestion[]) => {
+//   return {
+//     type: SET_TRIVIA_QUESTIONS,
+//     payload: triviaQuestions,
+//   };
+// };
 
 /**
  * Set loading indicator state for any async operations

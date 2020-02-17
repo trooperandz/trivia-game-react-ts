@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Header } from 'components/Header';
 import { Question } from 'components/Question';
 import { QuestionIndicator } from 'components/QuestionIndicator';
+import { State } from 'reducers/types';
 import { useWindowResize } from 'utils/hooks';
 import { questionData } from 'utils/api';
 import * as S from './styles';
@@ -15,7 +16,7 @@ const QuestionSlider: FC = () => {
   // @ts-ignore
   const { viewportWidth } = useWindowResize();
   const triviaQuestions = useSelector(
-    (state: any) => state.home.triviaQuestions,
+    (state: State) => state.questions.triviaQuestions,
   );
   console.log({ triviaQuestions });
   useEffect(() => {
