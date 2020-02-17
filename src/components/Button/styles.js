@@ -1,16 +1,25 @@
 import styled, { css, keyframes } from 'styled-components';
 
-export const Button = styled.button`
+export const Button = styled.button.attrs(props => ({
+  onClick: props.onClick,
+  type: props.type,
+}))`
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid #4aa;
   color: #333;
   border-radius: 24px;
+  margin: 16px 0;
   padding: 0 24px;
-  min-width: 240px;
+  background-color: #4aa;
+  color: #fff;
+  font-size: 18px;
+  width: 100%;
+  max-width: 250px;
   min-height: 52px;
   outline: none;
+  align-self: center;
 `;
 
 const spScaleAlpha = keyframes`

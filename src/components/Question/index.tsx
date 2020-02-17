@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import Button from 'components/Button';
+import { Button } from 'components/Button';
+import { SpinnerBalls } from 'components/Button/styles';
 import * as S from './styles';
 
-const Question = (props: any) => {
+type Question = {
+  viewportWidth: number;
+  handleSubmit: Function;
+  question: string;
+  questionNumber: number;
+  isProcessing: boolean;
+};
+
+export const Question: FC<Question> = props => {
   const {
     viewportWidth,
     handleSubmit,
@@ -12,18 +21,16 @@ const Question = (props: any) => {
     isProcessing,
   } = props;
 
+  const handleButtonClick = () => {
+    handleSubmit(questionNumber);
+  };
+
   return (
     <S.Container width={viewportWidth}>
       <S.Question>{question}</S.Question>
-      <Button
-        questionNumber={questionNumber}
-        isProcessing={isProcessing}
-        handleSubmit={handleSubmit}
-      >
-        Submit
+      <Button handleSubmit={handleButtonClick}>
+        {isProcessing ? <SpinnerBalls /> : 'Proceed'}
       </Button>
     </S.Container>
   );
 };
-
-export default Question;

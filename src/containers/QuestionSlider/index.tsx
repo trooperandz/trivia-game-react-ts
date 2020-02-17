@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 
-import Question from 'components/Question';
-import QuestionIndicator from 'components/QuestionIndicator';
+import { Header } from 'components/Header';
+import { Question } from 'components/Question';
+import { QuestionIndicator } from 'components/QuestionIndicator';
 import { useWindowResize } from 'utils/hooks';
 import { questionData } from 'utils/api';
 import * as S from './styles';
 
-const QuestionSlider = (props: any) => {
+export const QuestionSlider: FC = () => {
   const [horizontalPosition, setHorizontalPosition] = useState(0);
   const [questionNumber, setQuestionNumber] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -35,29 +36,30 @@ const QuestionSlider = (props: any) => {
   };
 
   return (
-    <S.Wrapper>
-      <QuestionIndicator
-        questionNumber={questionNumber}
-        questionData={questionData}
-        handleProgressClick={handleProgressClick}
-      />
-      <S.SliderContainer horizontalPosition={horizontalPosition}>
-        {questionData.map((item: any) => {
-          const { questionNumber, question } = item;
-          return (
-            <Question
-              key={questionNumber}
-              questionNumber={questionNumber}
-              question={question}
-              viewportWidth={viewportWidth}
-              handleSubmit={handleSubmit}
-              isProcessing={isProcessing}
-            />
-          );
-        })}
-      </S.SliderContainer>
-    </S.Wrapper>
+    <>
+      <Header />
+      <S.Wrapper>
+        <QuestionIndicator
+          questionNumber={questionNumber}
+          questionData={questionData}
+          handleProgressClick={handleProgressClick}
+        />
+        <S.SliderContainer horizontalPosition={horizontalPosition}>
+          {questionData.map((item: any) => {
+            const { questionNumber, question } = item;
+            return (
+              <Question
+                key={questionNumber}
+                questionNumber={questionNumber}
+                question={question}
+                viewportWidth={viewportWidth}
+                handleSubmit={handleSubmit}
+                isProcessing={isProcessing}
+              />
+            );
+          })}
+        </S.SliderContainer>
+      </S.Wrapper>
+    </>
   );
 };
-
-export default QuestionSlider;

@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import * as S from './styles';
 
-const Button = (props: any) => {
-  const { handleSubmit, questionNumber, isProcessing } = props;
+type Button = {
+  handleSubmit: Function;
+  type?: string;
+};
+
+export const Button: FC<Button> = props => {
+  const { handleSubmit, type, children } = props;
 
   return (
-    <S.Button onClick={() => handleSubmit(questionNumber)}>
-      {isProcessing ? <S.SpinnerBalls /> : 'Proceed'}
+    <S.Button type={type} onClick={handleSubmit}>
+      {children}
     </S.Button>
   );
 };
-
-export default Button;

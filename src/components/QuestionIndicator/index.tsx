@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import * as S from './styles';
 
-const QuestionIndicator = (props: any) => {
+type QuestionIndicator = {
+  questionNumber: number;
+  questionData: any;
+  handleProgressClick: Function;
+};
+
+export const QuestionIndicator: FC<QuestionIndicator> = props => {
   const { questionNumber, questionData, handleProgressClick } = props;
 
   return (
@@ -19,5 +25,3 @@ const QuestionIndicator = (props: any) => {
     </S.Container>
   );
 };
-
-export default QuestionIndicator;
