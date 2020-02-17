@@ -15,12 +15,16 @@ export interface InputType {
   id: string;
   name: string;
   label: string;
+  value?: string;
   error?: string;
   placeholder?: string;
   onChange: Function;
 }
 
-export type Option = string | number;
+export type Option = {
+  id: string | number;
+  name: string | number;
+};
 
 export interface SelectType extends InputType {
   options: Option[];

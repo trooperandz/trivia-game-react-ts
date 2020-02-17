@@ -1,13 +1,16 @@
-import React, { FC, useState, SyntheticEvent } from 'react';
+import React, { FC, useState, useEffect, SyntheticEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
+import { State } from 'reducers/types';
 import { FormValues, FormError } from 'components/Form/types';
 import { Select } from 'components/Form/Select';
 import { Input } from 'components/Form/Input';
 import { Button } from 'components/Button';
 import { Header } from 'components/Header';
 import { inputParams } from 'utils/quizInputParams';
-import { setValues } from 'actions';
+import { setValues, loadTriviaQuestions } from 'actions/home';
+import { SpinnerBalls } from 'components/Button/styles';
 import * as S from './styles';
 
 const initialFormValues = {
@@ -24,19 +27,26 @@ const errorMessages = {
   difficulty: 'Please select a difficulty level',
 };
 
-const Home: FC = () => {
+const Home: FC = props => {
   const [formValues, setFormValues] = useState<FormValues>(initialFormValues);
   const [formErrors, setFormErrors] = useState<FormError>(initialFormValues);
 
-  const reduxFormValues = useSelector((state: any) => state.home.formValues);
+  const reduxFormValues = useSelector((state: State) => state.home.formValues);
+  const isLoading = useSelector((state: State) => state.home.isLoading);
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  console.log({ reduxFormValues });
+  // If previous form values are saved in redux state, repopulate on reload
+  useEffect(() => {
+    if (Object.keys(reduxFormValues).length) {
+      setFormValues({ ...formValues, ...reduxFormValues });
+    }
+  }, []);
 
   const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    let isError: boolean = false;
+    let isError = false;
 
     const errors: FormError = Object.keys(formValues).reduce(
       (acc: FormError, formValue: string) => {
@@ -57,6 +67,7 @@ const Home: FC = () => {
       setFormErrors(errors);
     } else {
       dispatch(setValues(formValues));
+      dispatch(loadTriviaQuestions(formValues, history));
     }
   };
 
@@ -79,6 +90,7 @@ const Home: FC = () => {
               <Select
                 error={formErrors[params.name]}
                 key={params.id}
+                value={formValues[params.name]}
                 onChange={handleChange}
                 {...params}
               />
@@ -87,12 +99,13 @@ const Home: FC = () => {
                 error={formErrors[params.name]}
                 key={params.id}
                 onChange={handleChange}
+                value={formValues[params.name]}
                 {...params}
               />
             ),
           )}
           <Button type="submit" handleSubmit={handleSubmit}>
-            Submit
+            {isLoading ? <SpinnerBalls /> : 'Submit'}
           </Button>
         </S.Form>
       </S.Wrapper>

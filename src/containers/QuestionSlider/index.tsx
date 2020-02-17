@@ -1,4 +1,5 @@
 import React, { useState, useEffect, FC } from 'react';
+import { useSelector } from 'react-redux';
 
 import { Header } from 'components/Header';
 import { Question } from 'components/Question';
@@ -7,13 +8,16 @@ import { useWindowResize } from 'utils/hooks';
 import { questionData } from 'utils/api';
 import * as S from './styles';
 
-export const QuestionSlider: FC = () => {
+const QuestionSlider: FC = () => {
   const [horizontalPosition, setHorizontalPosition] = useState(0);
   const [questionNumber, setQuestionNumber] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
   // @ts-ignore
   const { viewportWidth } = useWindowResize();
-
+  const triviaQuestions = useSelector(
+    (state: any) => state.home.triviaQuestions,
+  );
+  console.log({ triviaQuestions });
   useEffect(() => {
     setHorizontalPosition(-viewportWidth * questionNumber);
   }, [viewportWidth]);
@@ -63,3 +67,5 @@ export const QuestionSlider: FC = () => {
     </>
   );
 };
+
+export default QuestionSlider;

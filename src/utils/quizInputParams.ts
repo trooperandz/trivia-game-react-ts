@@ -1,3 +1,5 @@
+import { amounts, categories, difficulties } from 'utils/api';
+
 /**
  * Structure for generating quiz Home form input items.
  * Ids/names map to API url param values and form errors.
@@ -13,31 +15,18 @@ export const inputParams = [
     label: 'Number of Questions',
     id: 'amount',
     name: 'amount',
-    options: [5, 10, 15, 20, 25, 30],
+    options: amounts,
   },
   {
     label: 'Category',
     id: 'category',
     name: 'category',
-    options: [
-      'History',
-      'Science & Nature',
-      'Politics',
-      'Art',
-      'General Knowledge',
-      'Sports',
-      'Computer Science',
-      'Mythology',
-      'Animals',
-      'Celebrities',
-      'Geography',
-      'Entertainment: Music',
-    ],
+    options: categories,
   },
   {
     label: 'Difficulty',
     id: 'difficulty',
     name: 'difficulty',
-    options: ['Easy', 'Medium', 'Hard'],
+    options: difficulties,
   },
 ];
