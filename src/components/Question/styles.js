@@ -8,7 +8,6 @@ export const Container = styled.div.attrs(props => ({
   align-items: center;
   justify-content: center;
   height: 100%;
-  /* width: 100vw; */
   width: ${props => props.width}px;
   color: #4aa;
   font-size: 40px;
@@ -26,4 +25,19 @@ export const Container = styled.div.attrs(props => ({
 export const Question = styled.div`
   padding: 24px;
   max-width: 600px;
+  line-height: 1.2;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+`;
+
+export const RadioWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px;
 `;

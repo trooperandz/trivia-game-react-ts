@@ -15,7 +15,7 @@ export const Radio: FC<RadioType> = props => {
         checked={checked}
         onChange={onChange}
       />
-      <S.Label htmlFor={label}>{label}</S.Label>
+      <S.Label htmlFor={label} dangerouslySetInnerHTML={{ __html: label }} />
     </S.Wrapper>
   );
 };

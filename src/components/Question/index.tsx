@@ -1,58 +1,60 @@
-import React, { useState, FC, SyntheticEvent } from 'react';
+import React, { FC, useState, SyntheticEvent } from 'react';
 
 import { Radio } from 'components/Form/Radio';
 import { Button } from 'components/Button';
-import { SpinnerBalls } from 'components/Button/styles';
+import { QuestionType } from './types';
 import * as S from './styles';
 
-type Question = {
-  viewportWidth: number;
-  handleSubmit: Function;
-  question: string;
-  questionNumber: number;
-  isProcessing: boolean;
-  answerChoices: string[];
-};
-
-export const Question: FC<Question> = props => {
+export const Question: FC<QuestionType> = props => {
   const [selectedValue, setSelectedValue] = useState<string | undefined>(
     undefined,
   );
-  console.log({ selectedValue });
+
   const {
     viewportWidth,
-    handleSubmit,
+    onClick,
     question,
     questionNumber,
-    isProcessing,
     answerChoices,
   } = props;
 
-  const handleButtonClick = () => {
-    handleSubmit(questionNumber);
-  };
+  const buttonStyle = { maxWidth: '116px' };
 
-  const handleRadioClick = (e: SyntheticEvent<HTMLInputElement>) => {
-    console.log('selected value: ', e.currentTarget.value);
+  const handleRadioChange = (e: SyntheticEvent<HTMLInputElement>) => {
     setSelectedValue(e.currentTarget.value);
   };
 
   return (
     <S.Container width={viewportWidth}>
       <S.Question dangerouslySetInnerHTML={{ __html: question }} />
-      {answerChoices.map(answer => {
-        return (
-          <Radio
-            label={answer}
-            value={answer}
-            checked={selectedValue === answer}
-            onChange={handleRadioClick}
-          />
-        );
-      })}
-      <Button handleSubmit={handleButtonClick}>
-        {isProcessing ? <SpinnerBalls /> : 'Proceed'}
-      </Button>
+      <S.RadioWrapper>
+        {answerChoices.map(answer => {
+          return (
+            <Radio
+              label={answer}
+              value={answer}
+              checked={selectedValue === answer}
+              onChange={handleRadioChange}
+            />
+          );
+        })}
+      </S.RadioWrapper>
+      <S.ButtonWrapper>
+        <Button
+          styleType="secondary"
+          onSubmit={() => onClick(questionNumber - 1)}
+          style={buttonStyle}
+        >
+          Back
+        </Button>
+        <Button
+          styleType="secondary"
+          onSubmit={() => onClick(questionNumber + 1)}
+          style={buttonStyle}
+        >
+          Next
+        </Button>
+      </S.ButtonWrapper>
     </S.Container>
   );
 };

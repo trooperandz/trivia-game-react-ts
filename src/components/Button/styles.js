@@ -3,6 +3,7 @@ import styled, { css, keyframes } from 'styled-components';
 export const Button = styled.button.attrs(props => ({
   onClick: props.onClick,
   type: props.type,
+  styleType: props.styleType,
 }))`
   display: flex;
   align-items: center;
@@ -12,8 +13,9 @@ export const Button = styled.button.attrs(props => ({
   border-radius: 24px;
   margin: 16px 0;
   padding: 0 24px;
-  background-color: #4aa;
-  color: #fff;
+  background-color: ${props =>
+    props.styleType === 'secondary' ? '#fff' : '#4aa'};
+  color: ${props => (props.styleType === 'secondary' ? '#4aa' : '#fff')};
   font-size: 18px;
   width: 100%;
   max-width: 250px;

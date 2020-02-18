@@ -24,4 +24,5 @@ export const QuestionNumber = styled.p.attrs(props => ({
   color: ${props => (props.isActive ? '#4aa' : 'gray')};
   font-weight: ${props => (props.isActive ? 'bold' : 'normal')};
   font-size: ${props => (props.isActive ? '20px' : '18px')};
+  cursor: pointer;
 `;

@@ -14,6 +14,7 @@ const QuestionSlider: FC = () => {
   const [horizontalPosition, setHorizontalPosition] = useState(0);
   const [questionNumber, setQuestionNumber] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
+
   // @ts-ignore
   const { viewportWidth } = useWindowResize();
   const triviaQuestions = useSelector(
@@ -25,16 +26,9 @@ const QuestionSlider: FC = () => {
     setHorizontalPosition(-viewportWidth * questionNumber);
   }, [viewportWidth]);
 
-  console.log({ viewportWidth });
-
-  const handleSubmit = (questionStep: number) => {
-    setIsProcessing(true);
-
-    setTimeout(() => {
-      setIsProcessing(false);
-      setQuestionNumber(questionStep);
-      setHorizontalPosition(-viewportWidth * questionStep);
-    }, 650);
+  const handleNavigationClick = (questionStep: number) => {
+    setQuestionNumber(questionStep);
+    setHorizontalPosition(-viewportWidth * questionStep);
   };
 
   const handleProgressClick = (questionStep: number) => {
@@ -52,12 +46,11 @@ const QuestionSlider: FC = () => {
               {triviaQuestions.map(
                 (triviaQuestion: TriviaQuestion, i: number) => (
                   <Question
-                    key={questionNumber}
-                    questionNumber={i + 1}
+                    key={`${i}-${triviaQuestion.correct_answer}`}
+                    questionNumber={i}
                     question={triviaQuestion.question}
                     viewportWidth={viewportWidth}
-                    handleSubmit={handleSubmit}
-                    isProcessing={isProcessing}
+                    onClick={handleNavigationClick}
                     answerChoices={[
                       ...triviaQuestion.incorrect_answers,
                       triviaQuestion.correct_answer,

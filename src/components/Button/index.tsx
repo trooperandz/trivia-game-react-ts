@@ -1,17 +1,18 @@
 import React, { FC } from 'react';
 
+import { ButtonType } from './types';
 import * as S from './styles';
 
-type Button = {
-  handleSubmit: Function;
-  type?: string;
-};
-
-export const Button: FC<Button> = props => {
-  const { handleSubmit, type, children } = props;
+export const Button: FC<ButtonType> = props => {
+  const { onSubmit, type, styleType, style, children } = props;
 
   return (
-    <S.Button type={type} onClick={handleSubmit}>
+    <S.Button
+      styleType={styleType}
+      type={type}
+      style={style}
+      onClick={onSubmit}
+    >
       {children}
     </S.Button>
   );

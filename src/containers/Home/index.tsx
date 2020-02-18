@@ -104,7 +104,7 @@ const Home: FC = props => {
               />
             ),
           )}
-          <Button type="submit" handleSubmit={handleSubmit}>
+          <Button type="submit" onSubmit={handleSubmit}>
             {isLoading ? <SpinnerBalls /> : 'Submit'}
           </Button>
         </S.Form>
