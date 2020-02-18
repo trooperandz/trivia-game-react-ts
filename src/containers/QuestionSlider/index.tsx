@@ -49,6 +49,7 @@ const QuestionSlider: FC = () => {
                     key={`${i}-${triviaQuestion.correct_answer}`}
                     questionNumber={i}
                     question={triviaQuestion.question}
+                    totalQuestions={triviaQuestions.length - 1}
                     viewportWidth={viewportWidth}
                     onClick={handleNavigationClick}
                     answerChoices={[

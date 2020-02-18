@@ -22,6 +22,13 @@ export const Button = styled.button.attrs(props => ({
   min-height: 52px;
   outline: none;
   align-self: center;
+
+  &:disabled {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #ccc;
+    pointer-events: none;
+  }
 `;
 
 const spScaleAlpha = keyframes`

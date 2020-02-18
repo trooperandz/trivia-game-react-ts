@@ -22,6 +22,11 @@ export const Container = styled.div.attrs(props => ({
   }
 `;
 
+export const QuestionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const Question = styled.div`
   padding: 24px;
   max-width: 600px;
@@ -31,11 +36,14 @@ export const Question = styled.div`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  align-self: center;
   width: 100%;
   max-width: 600px;
 `;
 
 export const RadioWrapper = styled.div`
+  position: relative;
+  left: 88px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

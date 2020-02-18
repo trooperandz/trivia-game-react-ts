@@ -16,6 +16,7 @@ export const Question: FC<QuestionType> = props => {
     question,
     questionNumber,
     answerChoices,
+    totalQuestions,
   } = props;
 
   const buttonStyle = { maxWidth: '116px' };
@@ -26,35 +27,39 @@ export const Question: FC<QuestionType> = props => {
 
   return (
     <S.Container width={viewportWidth}>
-      <S.Question dangerouslySetInnerHTML={{ __html: question }} />
-      <S.RadioWrapper>
-        {answerChoices.map(answer => {
-          return (
-            <Radio
-              label={answer}
-              value={answer}
-              checked={selectedValue === answer}
-              onChange={handleRadioChange}
-            />
-          );
-        })}
-      </S.RadioWrapper>
-      <S.ButtonWrapper>
-        <Button
-          styleType="secondary"
-          onSubmit={() => onClick(questionNumber - 1)}
-          style={buttonStyle}
-        >
-          Back
-        </Button>
-        <Button
-          styleType="secondary"
-          onSubmit={() => onClick(questionNumber + 1)}
-          style={buttonStyle}
-        >
-          Next
-        </Button>
-      </S.ButtonWrapper>
+      <S.QuestionWrapper>
+        <S.Question dangerouslySetInnerHTML={{ __html: question }} />
+        <S.RadioWrapper>
+          {answerChoices.map(answer => {
+            return (
+              <Radio
+                label={answer}
+                value={answer}
+                checked={selectedValue === answer}
+                onChange={handleRadioChange}
+              />
+            );
+          })}
+        </S.RadioWrapper>
+        <S.ButtonWrapper>
+          <Button
+            styleType="secondary"
+            onSubmit={() => onClick(questionNumber - 1)}
+            style={buttonStyle}
+            disabled={questionNumber === 0}
+          >
+            Back
+          </Button>
+          <Button
+            styleType="secondary"
+            onSubmit={() => onClick(questionNumber + 1)}
+            style={buttonStyle}
+            disabled={questionNumber === totalQuestions}
+          >
+            Next
+          </Button>
+        </S.ButtonWrapper>
+      </S.QuestionWrapper>
     </S.Container>
   );
 };

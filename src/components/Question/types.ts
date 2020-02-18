@@ -4,6 +4,7 @@ export type QuestionType = {
   question: string;
   questionNumber: number;
   answerChoices: string[];
+  totalQuestions: number;
 };
 
 export type TriviaQuestion = {

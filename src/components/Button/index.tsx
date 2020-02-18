@@ -4,7 +4,7 @@ import { ButtonType } from './types';
 import * as S from './styles';
 
 export const Button: FC<ButtonType> = props => {
-  const { onSubmit, type, styleType, style, children } = props;
+  const { onSubmit, type, styleType, style, disabled, children } = props;
 
   return (
     <S.Button
@@ -12,6 +12,7 @@ export const Button: FC<ButtonType> = props => {
       type={type}
       style={style}
       onClick={onSubmit}
+      disabled={disabled}
     >
       {children}
     </S.Button>
