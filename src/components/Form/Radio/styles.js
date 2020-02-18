@@ -16,10 +16,10 @@ export const Label = styled.label`
     content: '';
     position: absolute;
     display: inline-block;
-    top: -3px;
+    top: -4px;
     left: -42px;
-    height: 27px;
-    width: 27px;
+    height: 24px;
+    width: 24px;
     border-radius: 50%;
     border: 1px solid #767676;
     background-color: #fff;
@@ -45,10 +45,10 @@ export const Input = styled.input.attrs(props => ({
     content: '';
     position: absolute;
     display: inline-block;
-    left: -35px;
-    top: 4px;
-    height: 13.4px;
-    width: 13.4px;
+    left: -36px;
+    top: 2px;
+    height: 14px;
+    width: 14px;
     border-radius: 50%;
     background-color: #4aa;
   }
