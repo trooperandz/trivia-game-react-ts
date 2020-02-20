@@ -1,9 +1,19 @@
-import { amounts, categories, difficulties } from 'utils/api';
+import { amounts, categories, difficulties } from '../api';
 
-/**
- * Structure for generating quiz Home form input items.
- * Ids/names map to API url param values and form errors.
- */
+export const errorMessages = {
+  firstName: 'Please enter your first name',
+  amount: 'Please select an amount',
+  category: 'Please select a category',
+  difficulty: 'Please select a difficulty level',
+};
+
+export const initialErrorValues = {
+  firstName: '',
+  amount: '',
+  category: '',
+  difficulty: '',
+};
+
 export const inputParams = [
   {
     label: 'First Name',

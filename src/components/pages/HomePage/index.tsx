@@ -1,47 +1,26 @@
-import React, { FC, useState, useEffect, SyntheticEvent } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { FC, useState, SyntheticEvent } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { State } from 'reducers/types';
 import { FormValues, FormError } from 'components/Form/types';
+import { HomeProps } from './types';
 import { Select } from 'components/Form/Select';
 import { Input } from 'components/Form/Input';
 import { Button } from 'components/Button';
 import { Header } from 'components/Header';
-import { inputParams } from 'utils/quizInputParams';
+import { inputParams, errorMessages, initialErrorValues } from 'utils/form';
 import { setValues, loadTriviaQuestions } from 'actions/home';
 import { SpinnerBalls } from 'components/Button/styles';
 import * as S from './styles';
 
-const initialFormValues = {
-  firstName: '',
-  amount: '',
-  category: '',
-  difficulty: '',
-};
+export const HomePage: FC<HomeProps> = props => {
+  const { reduxFormValues, isLoading } = props;
 
-const errorMessages = {
-  firstName: 'Please enter your first name',
-  amount: 'Please select an amount',
-  category: 'Please select a category',
-  difficulty: 'Please select a difficulty level',
-};
+  const [formValues, setFormValues] = useState<FormValues>(reduxFormValues);
+  const [formErrors, setFormErrors] = useState<FormError>(initialErrorValues);
 
-const Home: FC = props => {
-  const [formValues, setFormValues] = useState<FormValues>(initialFormValues);
-  const [formErrors, setFormErrors] = useState<FormError>(initialFormValues);
-
-  const reduxFormValues = useSelector((state: State) => state.home.formValues);
-  const isLoading = useSelector((state: State) => state.home.isLoading);
   const dispatch = useDispatch();
   const history = useHistory();
-
-  // If previous form values are saved in redux state, repopulate on reload
-  useEffect(() => {
-    if (Object.keys(reduxFormValues).length) {
-      setFormValues({ ...formValues, ...reduxFormValues });
-    }
-  }, []);
 
   const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -112,5 +91,3 @@ const Home: FC = props => {
     </>
   );
 };
-
-export default Home;

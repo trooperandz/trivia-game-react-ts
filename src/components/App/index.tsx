@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Home from 'containers/Home';
+import { HomeContainer } from 'containers/HomeContainer';
 import QuestionSlider from 'containers/QuestionSlider';
 import { GlobalStyles } from 'globalStyles';
 
@@ -11,7 +11,7 @@ export const App: FC = () => {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Home />
+            <HomeContainer />
           </Route>
           <Route path="/questions">
             <QuestionSlider />
