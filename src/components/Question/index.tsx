@@ -6,24 +6,18 @@ import { QuestionType } from './types';
 import * as S from './styles';
 
 export const Question: FC<QuestionType> = props => {
-  const [selectedValue, setSelectedValue] = useState<string | undefined>(
-    undefined,
-  );
-
   const {
     viewportWidth,
-    onClick,
+    onNavigationClick,
     question,
     questionNumber,
     answerChoices,
+    onRadioChange,
+    selectedAnswer,
     totalQuestions,
   } = props;
 
   const buttonStyle = { maxWidth: '116px' };
-
-  const handleRadioChange = (e: SyntheticEvent<HTMLInputElement>) => {
-    setSelectedValue(e.currentTarget.value);
-  };
 
   return (
     <S.Container width={viewportWidth}>
@@ -35,24 +29,24 @@ export const Question: FC<QuestionType> = props => {
               <Radio
                 label={answer}
                 value={answer}
-                checked={selectedValue === answer}
-                onChange={handleRadioChange}
+                checked={selectedAnswer === answer}
+                onChange={onRadioChange}
               />
             );
           })}
         </S.RadioWrapper>
         <S.ButtonWrapper>
           <Button
-            styleType="secondary"
-            onSubmit={() => onClick(questionNumber - 1)}
+            secondary
+            onSubmit={() => onNavigationClick(questionNumber - 1)}
             style={buttonStyle}
             disabled={questionNumber === 0}
           >
             Back
           </Button>
           <Button
-            styleType="secondary"
-            onSubmit={() => onClick(questionNumber + 1)}
+            secondary
+            onSubmit={() => onNavigationClick(questionNumber + 1)}
             style={buttonStyle}
             disabled={questionNumber === totalQuestions}
           >

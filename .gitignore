@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+todos.txt
+notes.txt
+game-notes.txt
+

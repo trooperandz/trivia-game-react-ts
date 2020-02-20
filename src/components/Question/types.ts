@@ -1,10 +1,12 @@
 export type QuestionType = {
   viewportWidth: number;
-  onClick: Function;
+  onNavigationClick: Function;
   question: string;
   questionNumber: number;
   answerChoices: string[];
   totalQuestions: number;
+  onRadioChange: Function;
+  selectedAnswer?: string;
 };
 
 export type TriviaQuestion = {

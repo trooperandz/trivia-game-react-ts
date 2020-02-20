@@ -5,14 +5,14 @@ import { QuestionIndicatorType } from './types';
 import * as S from './styles';
 
 export const QuestionIndicator: FC<QuestionIndicatorType> = props => {
-  const { questionNumber, triviaQuestions, handleProgressClick } = props;
+  const { questionNumber, triviaQuestions, onProgressClick } = props;
 
   return (
     <S.Container>
       {triviaQuestions.map((triviaQuestion: TriviaQuestion, i: number) => (
         <S.QuestionNumber
           key={i}
-          onClick={() => handleProgressClick(i)}
+          onClick={() => onProgressClick(i)}
           isActive={i === questionNumber}
         >
           {i + 1}

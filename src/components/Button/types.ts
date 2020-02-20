@@ -2,7 +2,7 @@ export type ButtonType = {
   onSubmit: Function;
   type?: string;
   disabled?: boolean;
-  styleType?: string;
+  secondary?: boolean;
   style?: {
     [key: string]: string;
   };

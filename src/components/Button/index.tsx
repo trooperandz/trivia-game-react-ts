@@ -4,11 +4,11 @@ import { ButtonType } from './types';
 import * as S from './styles';
 
 export const Button: FC<ButtonType> = props => {
-  const { onSubmit, type, styleType, style, disabled, children } = props;
+  const { onSubmit, type, secondary, style, disabled, children } = props;
 
   return (
     <S.Button
-      styleType={styleType}
+      secondary={secondary}
       type={type}
       style={style}
       onClick={onSubmit}

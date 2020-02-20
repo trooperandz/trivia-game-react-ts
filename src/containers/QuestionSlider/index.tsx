@@ -1,5 +1,5 @@
-import React, { useState, useEffect, FC } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect, FC, SyntheticEvent } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { Header } from 'components/Header';
@@ -7,33 +7,45 @@ import { Question } from 'components/Question';
 import { QuestionIndicator } from 'components/QuestionIndicator';
 import { State } from 'reducers/types';
 import { TriviaQuestion } from 'components/Question/types';
+import { ActiveQuestion } from 'reducers/questions/types';
 import { useWindowResize } from 'utils/hooks';
+import { setTriviaQuestions, setActiveQuestion } from 'actions/questions';
 import * as S from './styles';
 
 const QuestionSlider: FC = () => {
   const [horizontalPosition, setHorizontalPosition] = useState(0);
-  const [questionNumber, setQuestionNumber] = useState(0);
-  const [isProcessing, setIsProcessing] = useState(false);
 
   // @ts-ignore
   const { viewportWidth } = useWindowResize();
+  const dispatch = useDispatch();
   const triviaQuestions = useSelector(
     (state: State) => state.questions.triviaQuestions,
   );
+  const activeQuestion = useSelector(
+    (state: State) => state.questions.activeQuestion,
+  );
 
-  console.log({ triviaQuestions });
   useEffect(() => {
-    setHorizontalPosition(-viewportWidth * questionNumber);
+    setHorizontalPosition(-viewportWidth * activeQuestion);
   }, [viewportWidth]);
 
-  const handleNavigationClick = (questionStep: number) => {
-    setQuestionNumber(questionStep);
-    setHorizontalPosition(-viewportWidth * questionStep);
+  // Save answer selection
+  const handleRadioChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+    triviaQuestions[activeQuestion].selected_answer = value;
+    dispatch(setTriviaQuestions([...triviaQuestions]));
   };
 
-  const handleProgressClick = (questionStep: number) => {
-    setQuestionNumber(questionStep);
-    setHorizontalPosition(-viewportWidth * questionStep);
+  // Move back and forth between questions
+  const handleNavigationClick = (questionNumber: ActiveQuestion) => {
+    dispatch(setActiveQuestion(questionNumber));
+    setHorizontalPosition(-viewportWidth * questionNumber);
+  };
+
+  // Handle "pagination" click
+  const handleProgressClick = (questionNumber: ActiveQuestion) => {
+    dispatch(setActiveQuestion(questionNumber));
+    setHorizontalPosition(-viewportWidth * questionNumber);
   };
 
   return (
@@ -47,11 +59,13 @@ const QuestionSlider: FC = () => {
                 (triviaQuestion: TriviaQuestion, i: number) => (
                   <Question
                     key={`${i}-${triviaQuestion.correct_answer}`}
+                    selectedAnswer={triviaQuestion.selected_answer}
                     questionNumber={i}
                     question={triviaQuestion.question}
                     totalQuestions={triviaQuestions.length - 1}
                     viewportWidth={viewportWidth}
-                    onClick={handleNavigationClick}
+                    onNavigationClick={handleNavigationClick}
+                    onRadioChange={handleRadioChange}
                     answerChoices={[
                       ...triviaQuestion.incorrect_answers,
                       triviaQuestion.correct_answer,
@@ -61,9 +75,9 @@ const QuestionSlider: FC = () => {
               )}
             </S.SliderContainer>
             <QuestionIndicator
-              questionNumber={questionNumber}
+              questionNumber={activeQuestion}
               triviaQuestions={triviaQuestions}
-              handleProgressClick={handleProgressClick}
+              onProgressClick={handleProgressClick}
             />
           </>
         ) : (
