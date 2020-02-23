@@ -1,10 +1,7 @@
 export type QuestionType = {
   viewportWidth: number;
-  onNavigationClick: Function;
   question: string;
-  questionNumber: number;
   answerChoices: string[];
-  totalQuestions: number;
   onRadioChange: Function;
   selectedAnswer?: string;
 };

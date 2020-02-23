@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import { homeReducer } from 'reducers/home';
-import { questionsReducer } from 'reducers/questions';
+import { quizReducer } from 'reducers/quiz';
+import { userReducer } from 'reducers/user';
 
 export const rootReducer = combineReducers({
-  home: homeReducer,
-  questions: questionsReducer,
+  quiz: quizReducer,
+  user: userReducer,
 });

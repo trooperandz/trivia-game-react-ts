@@ -2,7 +2,7 @@ import { TriviaQuestion } from 'components/Question/types';
 
 export type ActiveQuestion = number;
 
-export type QuestionState = {
+export type QuizState = {
   triviaQuestions: TriviaQuestion[];
   activeQuestion: ActiveQuestion;
 };

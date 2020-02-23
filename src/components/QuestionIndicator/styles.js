@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,7 +11,6 @@ export const Container = styled.div`
   color: #000;
   padding: 0 24px;
   border-radius: 6px;
-  z-index: 1;
 `;
 
 export const QuestionNumber = styled.p.attrs(props => ({

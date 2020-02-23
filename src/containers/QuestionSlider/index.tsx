@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { Header } from 'components/Header';
+import { QuestionFooter } from 'components/QuestionFooter';
 import { Question } from 'components/Question';
-import { QuestionIndicator } from 'components/QuestionIndicator';
 import { State } from 'reducers/types';
 import { TriviaQuestion } from 'components/Question/types';
-import { ActiveQuestion } from 'reducers/questions/types';
-import { useWindowResize } from 'utils/hooks';
+import { ActiveQuestion } from 'reducers/quiz/types';
+import { useWindowResize } from 'hooks';
 import { setTriviaQuestions, setActiveQuestion } from 'actions/questions';
 import * as S from './styles';
 
@@ -18,11 +18,9 @@ const QuestionSlider: FC = () => {
   // @ts-ignore
   const { viewportWidth } = useWindowResize();
   const dispatch = useDispatch();
-  const triviaQuestions = useSelector(
-    (state: State) => state.questions.triviaQuestions,
-  );
-  const activeQuestion = useSelector(
-    (state: State) => state.questions.activeQuestion,
+  const { userName } = useSelector((state: State) => state.user);
+  const { triviaQuestions, activeQuestion } = useSelector(
+    (state: State) => state.quiz,
   );
 
   useEffect(() => {
@@ -36,14 +34,8 @@ const QuestionSlider: FC = () => {
     dispatch(setTriviaQuestions([...triviaQuestions]));
   };
 
-  // Move back and forth between questions
+  // Move back and forth between questions and progress indicator clicks
   const handleNavigationClick = (questionNumber: ActiveQuestion) => {
-    dispatch(setActiveQuestion(questionNumber));
-    setHorizontalPosition(-viewportWidth * questionNumber);
-  };
-
-  // Handle "pagination" click
-  const handleProgressClick = (questionNumber: ActiveQuestion) => {
     dispatch(setActiveQuestion(questionNumber));
     setHorizontalPosition(-viewportWidth * questionNumber);
   };
@@ -60,11 +52,8 @@ const QuestionSlider: FC = () => {
                   <Question
                     key={`${i}-${triviaQuestion.correct_answer}`}
                     selectedAnswer={triviaQuestion.selected_answer}
-                    questionNumber={i}
                     question={triviaQuestion.question}
-                    totalQuestions={triviaQuestions.length - 1}
                     viewportWidth={viewportWidth}
-                    onNavigationClick={handleNavigationClick}
                     onRadioChange={handleRadioChange}
                     answerChoices={[
                       ...triviaQuestion.incorrect_answers,
@@ -74,10 +63,12 @@ const QuestionSlider: FC = () => {
                 ),
               )}
             </S.SliderContainer>
-            <QuestionIndicator
-              questionNumber={activeQuestion}
+            <S.Title>Good luck, {userName}</S.Title>
+            <QuestionFooter
+              totalQuestions={triviaQuestions.length - 1}
+              activeQuestion={activeQuestion}
+              onNavigationClick={handleNavigationClick}
               triviaQuestions={triviaQuestions}
-              onProgressClick={handleProgressClick}
             />
           </>
         ) : (

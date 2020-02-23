@@ -34,3 +34,11 @@ export const SliderContainer = styled.div.attrs(props => ({
   transition: all 0.45s ease-in-out;
   transform: translateX(${props => props.horizontalPosition}px);
 `;
+
+export const Title = styled.h2`
+  position: absolute;
+  top: 102px;
+  left: 32px;
+  font-size: 28px;
+  color: gray;
+`;

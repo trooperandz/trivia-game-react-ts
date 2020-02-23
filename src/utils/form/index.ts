@@ -40,3 +40,13 @@ export const inputParams = [
     options: difficulties,
   },
 ];
+
+export const getLocalStorageFormValues = () => {
+  const formValues = localStorage.getItem('triviaFormValues');
+
+  if (formValues) {
+    return JSON.parse(formValues);
+  }
+
+  return undefined;
+};

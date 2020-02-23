@@ -1,23 +1,35 @@
-import React, { FC, useState, SyntheticEvent } from 'react';
+import React, { FC, useState, SyntheticEvent, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { FormValues, FormError } from 'components/Form/types';
-import { HomeProps } from './types';
+import { LoadingState } from 'types';
 import { Select } from 'components/Form/Select';
 import { Input } from 'components/Form/Input';
 import { Button } from 'components/Button';
 import { Header } from 'components/Header';
-import { inputParams, errorMessages, initialErrorValues } from 'utils/form';
-import { setValues, loadTriviaQuestions } from 'actions/home';
+import {
+  inputParams,
+  errorMessages,
+  initialErrorValues,
+  getLocalStorageFormValues,
+} from 'utils/form';
+import { setUserName } from 'actions/user';
+import { loadTriviaQuestions } from 'actions/questions';
 import { SpinnerBalls } from 'components/Button/styles';
 import * as S from './styles';
 
-export const HomePage: FC<HomeProps> = props => {
-  const { reduxFormValues, isLoading } = props;
-
-  const [formValues, setFormValues] = useState<FormValues>(reduxFormValues);
+export const HomeScreen: FC = props => {
+  const [formValues, setFormValues] = useState<FormValues>({});
   const [formErrors, setFormErrors] = useState<FormError>(initialErrorValues);
+  const [isLoading, setIsLoading] = useState<LoadingState>(false);
+
+  useEffect(() => {
+    const values = getLocalStorageFormValues();
+    if (values) {
+      setFormValues(values);
+    }
+  }, []);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -45,8 +57,10 @@ export const HomePage: FC<HomeProps> = props => {
     if (isError) {
       setFormErrors(errors);
     } else {
-      dispatch(setValues(formValues));
+      setIsLoading(true);
+      localStorage.setItem('triviaFormValues', JSON.stringify(formValues));
       dispatch(loadTriviaQuestions(formValues, history));
+      dispatch(setUserName(formValues.firstName));
     }
   };
 
