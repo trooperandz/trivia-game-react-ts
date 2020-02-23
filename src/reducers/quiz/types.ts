@@ -5,4 +5,5 @@ export type ActiveQuestion = number;
 export type QuizState = {
   triviaQuestions: TriviaQuestion[];
   activeQuestion: ActiveQuestion;
+  category: string;
 };

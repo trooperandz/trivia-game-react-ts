@@ -14,7 +14,7 @@ import {
   getLocalStorageFormValues,
 } from '../../utils/form';
 import { setUserName } from '../../actions/user';
-import { loadTriviaQuestions } from '../../actions/questions';
+import { loadTriviaQuestions, setCategory } from '../../actions/questions';
 import { SpinnerBalls } from '../Button/styles';
 import * as S from './styles';
 
@@ -27,6 +27,13 @@ export const Form: FC = () => {
 
   useEffect(() => {
     const values = getLocalStorageFormValues();
+    // {
+    //   firstName: "Matthew",
+    //   amount: "15",
+    //   category: "14",
+    //   difficulty: "medium",
+    // }
+    console.log({ values });
     if (values) {
       setFormValues(values);
     }
@@ -62,10 +69,21 @@ export const Form: FC = () => {
     }
   };
 
-  const handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: SyntheticEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const {
       currentTarget: { value, name },
     } = e;
+
+    // Save category name
+    if (name === 'category') {
+      // @ts-ignore
+      const categoryName = e.target[e.target.selectedIndex].getAttribute(
+        'data-category',
+      );
+      dispatch(setCategory(categoryName));
+    }
 
     setFormValues({ ...formValues, [name]: value });
   };
@@ -93,7 +111,7 @@ export const Form: FC = () => {
         ),
       )}
       <Button type="submit" onSubmit={handleSubmit}>
-        {isLoading ? <SpinnerBalls /> : 'Submit'}
+        {isLoading ? <SpinnerBalls /> : 'Begin'}
       </Button>
     </S.Form>
   );

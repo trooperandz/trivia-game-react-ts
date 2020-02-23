@@ -9,7 +9,7 @@ export const HomeScreen: FC = () => {
     <>
       <Header />
       <S.Wrapper>
-        <S.Title>State your terms</S.Title>
+        <S.Title>Welcome to the Trivia Challenge!</S.Title>
         <Form />
       </S.Wrapper>
     </>

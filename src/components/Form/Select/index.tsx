@@ -10,10 +10,10 @@ export const Select: FC<SelectType> = props => {
   return (
     <S.InputWrapper>
       <S.Label htmlFor={name}>{label}</S.Label>
-      <S.Select id={id} name={name} onChange={onChange}>
+      <S.Select id={id} name={name} onChange={onChange} value={value}>
         {!value && <option value="">Select...</option>}
         {options.map((option: Option) => (
-          <option key={option.id} value={option.id} defaultValue={value}>
+          <option key={option.id} value={option.id} data-category={option.name}>
             {option.name}
           </option>
         ))}

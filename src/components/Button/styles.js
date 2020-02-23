@@ -21,6 +21,7 @@ export const Button = styled.button.attrs(props => ({
   min-height: 52px;
   outline: none;
   align-self: center;
+  text-transform: uppercase;
 
   &:disabled {
     border: 1px solid #ccc;

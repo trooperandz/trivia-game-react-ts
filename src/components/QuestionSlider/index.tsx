@@ -17,8 +17,7 @@ export const QuestionSlider: FC = () => {
   // @ts-ignore
   const { viewportWidth } = useWindowResize();
   const dispatch = useDispatch();
-  const { userName } = useSelector((state: State) => state.user);
-  const { triviaQuestions, activeQuestion } = useSelector(
+  const { triviaQuestions, activeQuestion, category } = useSelector(
     (state: State) => state.quiz,
   );
 
@@ -26,11 +25,17 @@ export const QuestionSlider: FC = () => {
     setHorizontalPosition(-viewportWidth * activeQuestion);
   }, [viewportWidth]);
 
-  // Save answer selection
+  // Save answer selection and automatically move to next question
   const handleRadioChange = (e: SyntheticEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
+    const nextQuestion = activeQuestion + 1;
     triviaQuestions[activeQuestion].selected_answer = value;
     dispatch(setTriviaQuestions([...triviaQuestions]));
+
+    setTimeout(() => {
+      dispatch(setActiveQuestion(nextQuestion));
+      setHorizontalPosition(-viewportWidth * nextQuestion);
+    }, 400);
   };
 
   // Move back and forth between questions and progress indicator clicks
@@ -60,7 +65,7 @@ export const QuestionSlider: FC = () => {
               ),
             )}
           </S.SliderContainer>
-          <S.Title>Good luck, {userName}</S.Title>
+          <S.Title>{category}</S.Title>
           <QuestionFooter
             totalQuestions={triviaQuestions.length - 1}
             activeQuestion={activeQuestion}

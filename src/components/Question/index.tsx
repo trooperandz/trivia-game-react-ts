@@ -13,8 +13,6 @@ export const Question: FC<QuestionType> = props => {
     selectedAnswer,
   } = props;
 
-  const buttonStyle = { maxWidth: '116px' };
-
   return (
     <S.Container width={viewportWidth}>
       <S.QuestionWrapper>
