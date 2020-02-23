@@ -6,4 +6,5 @@ export type QuizState = {
   triviaQuestions: TriviaQuestion[];
   activeQuestion: ActiveQuestion;
   category: string;
+  isQuizCompleted: boolean;
 };

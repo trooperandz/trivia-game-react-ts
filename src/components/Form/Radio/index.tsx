@@ -5,7 +5,7 @@ import * as S from './styles';
 
 export const Radio: FC<RadioType> = props => {
   const { label, checked, value, onChange } = props;
-  console.log({ checked });
+
   return (
     <S.Wrapper>
       <S.Input

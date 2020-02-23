@@ -27,13 +27,7 @@ export const Form: FC = () => {
 
   useEffect(() => {
     const values = getLocalStorageFormValues();
-    // {
-    //   firstName: "Matthew",
-    //   amount: "15",
-    //   category: "14",
-    //   difficulty: "medium",
-    // }
-    console.log({ values });
+
     if (values) {
       setFormValues(values);
     }

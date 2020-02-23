@@ -1,4 +1,4 @@
-import React, { FC, useState, SyntheticEvent } from 'react';
+import React, { FC } from 'react';
 
 import { Radio } from 'components/Form/Radio';
 import { QuestionType } from './types';
@@ -18,9 +18,10 @@ export const Question: FC<QuestionType> = props => {
       <S.QuestionWrapper>
         <S.Question dangerouslySetInnerHTML={{ __html: question }} />
         <S.RadioWrapper>
-          {answerChoices.map(answer => {
+          {answerChoices.map((answer: string, i: number) => {
             return (
               <Radio
+                key={`${i}-${answer}`}
                 label={answer}
                 value={answer}
                 checked={selectedAnswer === answer}

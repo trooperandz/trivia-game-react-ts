@@ -11,14 +11,14 @@ export const App: FC = () => {
     <>
       <Router>
         <Switch>
-          <Route exact path="/">
-            <HomeScreen />
-          </Route>
           <Route path="/questions">
             <QuizScreen />
           </Route>
           <Route path="/results">
             <ResultsScreen />
+          </Route>
+          <Route path="/">
+            <HomeScreen />
           </Route>
         </Switch>
       </Router>

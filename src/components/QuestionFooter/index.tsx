@@ -7,7 +7,6 @@ import { QuestionFooterType } from './types';
 import { LoadingState } from 'types';
 import { SpinnerBalls } from 'components/Button/styles';
 import * as S from './styles';
-import { TriviaQuestion } from 'components/Question/types';
 
 const buttonStyle = { maxWidth: '116px' };
 
@@ -16,17 +15,13 @@ export const QuestionFooter: FC<QuestionFooterType> = props => {
   const history = useHistory();
 
   const {
-    totalQuestions,
     activeQuestion,
     onNavigationClick,
     triviaQuestions,
+    isQuizCompleted,
   } = props;
 
-  const isLastQuestion = activeQuestion === totalQuestions;
-  const isAllQuestionsAnwered = triviaQuestions.find(
-    (triviaQuestion: TriviaQuestion) =>
-      triviaQuestion.selected_answer === undefined,
-  );
+  const isLastQuestion = activeQuestion === triviaQuestions.length - 1;
 
   const handleNextClick = () => {
     if (isLastQuestion) {
@@ -41,8 +36,7 @@ export const QuestionFooter: FC<QuestionFooterType> = props => {
     }
   };
 
-  // TODO: only show submit btn style after radio is answered,
-  // make sure does not try to progress automatically (look at QuestionSlider)
+  // TODO: do we want a completely separate submit button (can use isQuizCompleted)?
   return (
     <S.Wrapper>
       <S.Container>
@@ -60,18 +54,12 @@ export const QuestionFooter: FC<QuestionFooterType> = props => {
           onProgressClick={onNavigationClick}
         />
         <Button
-          secondary
+          secondary={!isQuizCompleted}
           onSubmit={handleNextClick}
-          style={isLastQuestion ? buttonStyle : {}}
-          disabled={isLastQuestion && !isAllQuestionsAnwered}
+          style={buttonStyle}
+          disabled={isLastQuestion && !isQuizCompleted}
         >
-          {isLoading ? (
-            <SpinnerBalls />
-          ) : isAllQuestionsAnwered ? (
-            'Submit'
-          ) : (
-            'Next'
-          )}
+          {isLoading ? <SpinnerBalls /> : isQuizCompleted ? 'Submit' : 'Next'}
         </Button>
       </S.Container>
     </S.Wrapper>

@@ -9,6 +9,7 @@ import { TriviaQuestion } from 'components/Question/types';
 import { ActiveQuestion } from 'reducers/quiz/types';
 import { useWindowResize } from 'hooks';
 import { setTriviaQuestions, setActiveQuestion } from 'actions/questions';
+import { setIsQuizCompleted } from 'actions/quiz';
 import * as S from './styles';
 
 export const QuestionSlider: FC = () => {
@@ -17,25 +18,38 @@ export const QuestionSlider: FC = () => {
   // @ts-ignore
   const { viewportWidth } = useWindowResize();
   const dispatch = useDispatch();
-  const { triviaQuestions, activeQuestion, category } = useSelector(
-    (state: State) => state.quiz,
-  );
+  const {
+    triviaQuestions,
+    activeQuestion,
+    category,
+    isQuizCompleted,
+  } = useSelector((state: State) => state.quiz);
 
   useEffect(() => {
     setHorizontalPosition(-viewportWidth * activeQuestion);
   }, [viewportWidth]);
 
-  // Save answer selection and automatically move to next question
+  // Save answer selection and automagically move to next question
   const handleRadioChange = (e: SyntheticEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
     const nextQuestion = activeQuestion + 1;
+
     triviaQuestions[activeQuestion].selected_answer = value;
+
+    const isQuestionsUnanswered = triviaQuestions.some(
+      (triviaQuestion: TriviaQuestion) => !triviaQuestion.selected_answer,
+    );
+
     dispatch(setTriviaQuestions([...triviaQuestions]));
 
-    setTimeout(() => {
-      dispatch(setActiveQuestion(nextQuestion));
-      setHorizontalPosition(-viewportWidth * nextQuestion);
-    }, 400);
+    if (isQuestionsUnanswered) {
+      setTimeout(() => {
+        dispatch(setActiveQuestion(nextQuestion));
+        setHorizontalPosition(-viewportWidth * nextQuestion);
+      }, 400);
+    } else {
+      dispatch(setIsQuizCompleted(true));
+    }
   };
 
   // Move back and forth between questions and progress indicator clicks
@@ -52,7 +66,7 @@ export const QuestionSlider: FC = () => {
             {triviaQuestions.map(
               (triviaQuestion: TriviaQuestion, i: number) => (
                 <Question
-                  key={`${i}-${triviaQuestion.correct_answer}`}
+                  key={`${i}-${triviaQuestion.question}`}
                   selectedAnswer={triviaQuestion.selected_answer}
                   question={triviaQuestion.question}
                   viewportWidth={viewportWidth}
@@ -67,10 +81,10 @@ export const QuestionSlider: FC = () => {
           </S.SliderContainer>
           <S.Title>{category}</S.Title>
           <QuestionFooter
-            totalQuestions={triviaQuestions.length - 1}
             activeQuestion={activeQuestion}
             onNavigationClick={handleNavigationClick}
             triviaQuestions={triviaQuestions}
+            isQuizCompleted={isQuizCompleted}
           />
         </>
       ) : (
