@@ -50,13 +50,17 @@ export const TriviaResults: FC = () => {
 
             return (
               <S.ResultContainer>
+                {isCorrectAnswer ? <S.IconCheck /> : <S.IconX />}
                 <S.QuestionWrapper>
                   <S.Number>{i + 1}.</S.Number>
                   <S.Question dangerouslySetInnerHTML={{ __html: question }} />
                 </S.QuestionWrapper>
-                <S.UserAnswer isCorrectAnswer={isCorrectAnswer}>
-                  Your answer: {selectedAnswer}
-                </S.UserAnswer>
+                <S.QuestionWrapper>
+                  <S.UserAnswerTitle isCorrectAnswer={isCorrectAnswer}>
+                    Your answer:
+                  </S.UserAnswerTitle>
+                  <S.CorrectAnswer>{selectedAnswer}</S.CorrectAnswer>
+                </S.QuestionWrapper>
                 {!isCorrectAnswer && (
                   <S.QuestionWrapper>
                     <S.CorrectAnswerTitle>Correct Answer:</S.CorrectAnswerTitle>

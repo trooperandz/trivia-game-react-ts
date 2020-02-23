@@ -1,4 +1,15 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+import iconCheck from 'images/icon-check-24.svg';
+import iconX from 'images/icon-x-24.svg';
+
+const iconStyle = css`
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+`;
 
 export const Wrapper = styled.div`
   display: flex;
@@ -15,6 +26,16 @@ export const Title = styled.h1`
   color: gray;
 `;
 
+export const IconCheck = styled.div`
+  ${iconStyle}
+  background-image: url(${iconCheck});
+`;
+
+export const IconX = styled.div`
+  ${iconStyle}
+  background-image: url(${iconX});
+`;
+
 export const Question = styled.h2`
   margin-left: 12px;
   font-size: 25px;
@@ -26,11 +47,11 @@ export const Number = styled.h2`
   color: gray;
 `;
 
-export const UserAnswer = styled.p.attrs(props => ({
+export const UserAnswerTitle = styled.p.attrs(props => ({
   isCorrectAnswer: props.isCorrectAnswer,
 }))`
   font-size: 25px;
-  color: ${props => (props.isCorrectAnswer ? '#4aa' : 'red')};
+  color: ${props => (props.isCorrectAnswer ? '#4aa' : '#BA2323')};
 `;
 
 export const CorrectAnswerTitle = styled.h3`

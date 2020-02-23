@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="22px" viewBox="0 0 30 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>ic-check-24px</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon/checkmark" transform="translate(-5.000000, -9.000000)">
+            <g id="ic-check-24px">
+                <polygon id="Path" points="0 0 39 0 39 39 0 39"></polygon>
+                <polygon id="Path" fill="#44AAAA" fill-rule="nonzero" points="14.625 26.27625 7.84875 19.5 5.54125 21.79125 14.625 30.875 34.125 11.375 31.83375 9.08375"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

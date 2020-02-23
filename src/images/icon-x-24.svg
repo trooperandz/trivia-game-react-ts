@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>ic-close-24px</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon/close" transform="translate(-8.000000, -8.000000)">
+            <g id="ic-close-24px">
+                <polygon id="Path" fill="#BA2323" fill-rule="nonzero" points="30.875 10.41625 28.58375 8.125 19.5 17.20875 10.41625 8.125 8.125 10.41625 17.20875 19.5 8.125 28.58375 10.41625 30.875 19.5 21.79125 28.58375 30.875 30.875 28.58375 21.79125 19.5"></polygon>
+                <polygon id="Path" points="0 0 39 0 39 39 0 39"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
