@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { HomeScreen } from '../../screens/HomeScreen';
-import QuestionSlider from 'containers/QuestionSlider';
+import { HomeScreen } from 'screens/HomeScreen';
+import { QuizScreen } from 'screens/QuizScreen';
 import { GlobalStyles } from 'globalStyles';
 
 export const App: FC = () => {
@@ -14,7 +14,7 @@ export const App: FC = () => {
             <HomeScreen />
           </Route>
           <Route path="/questions">
-            <QuestionSlider />
+            <QuizScreen />
           </Route>
         </Switch>
       </Router>

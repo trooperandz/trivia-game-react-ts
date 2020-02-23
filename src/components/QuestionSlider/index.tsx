@@ -2,7 +2,6 @@ import React, { useState, useEffect, FC, SyntheticEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { Header } from 'components/Header';
 import { QuestionFooter } from 'components/QuestionFooter';
 import { Question } from 'components/Question';
 import { State } from 'reducers/types';
@@ -12,7 +11,7 @@ import { useWindowResize } from 'hooks';
 import { setTriviaQuestions, setActiveQuestion } from 'actions/questions';
 import * as S from './styles';
 
-const QuestionSlider: FC = () => {
+export const QuestionSlider: FC = () => {
   const [horizontalPosition, setHorizontalPosition] = useState(0);
 
   // @ts-ignore
@@ -41,47 +40,42 @@ const QuestionSlider: FC = () => {
   };
 
   return (
-    <>
-      <Header />
-      <S.Wrapper>
-        {triviaQuestions.length ? (
-          <>
-            <S.SliderContainer horizontalPosition={horizontalPosition}>
-              {triviaQuestions.map(
-                (triviaQuestion: TriviaQuestion, i: number) => (
-                  <Question
-                    key={`${i}-${triviaQuestion.correct_answer}`}
-                    selectedAnswer={triviaQuestion.selected_answer}
-                    question={triviaQuestion.question}
-                    viewportWidth={viewportWidth}
-                    onRadioChange={handleRadioChange}
-                    answerChoices={[
-                      ...triviaQuestion.incorrect_answers,
-                      triviaQuestion.correct_answer,
-                    ]}
-                  />
-                ),
-              )}
-            </S.SliderContainer>
-            <S.Title>Good luck, {userName}</S.Title>
-            <QuestionFooter
-              totalQuestions={triviaQuestions.length - 1}
-              activeQuestion={activeQuestion}
-              onNavigationClick={handleNavigationClick}
-              triviaQuestions={triviaQuestions}
-            />
-          </>
-        ) : (
-          <>
-            <S.EmptyStateTitle>You have no questions!</S.EmptyStateTitle>
-            <S.Link>
-              Get some <Link to="/">here</Link>
-            </S.Link>
-          </>
-        )}
-      </S.Wrapper>
-    </>
+    <S.Wrapper>
+      {triviaQuestions.length ? (
+        <>
+          <S.SliderContainer horizontalPosition={horizontalPosition}>
+            {triviaQuestions.map(
+              (triviaQuestion: TriviaQuestion, i: number) => (
+                <Question
+                  key={`${i}-${triviaQuestion.correct_answer}`}
+                  selectedAnswer={triviaQuestion.selected_answer}
+                  question={triviaQuestion.question}
+                  viewportWidth={viewportWidth}
+                  onRadioChange={handleRadioChange}
+                  answerChoices={[
+                    ...triviaQuestion.incorrect_answers,
+                    triviaQuestion.correct_answer,
+                  ]}
+                />
+              ),
+            )}
+          </S.SliderContainer>
+          <S.Title>Good luck, {userName}</S.Title>
+          <QuestionFooter
+            totalQuestions={triviaQuestions.length - 1}
+            activeQuestion={activeQuestion}
+            onNavigationClick={handleNavigationClick}
+            triviaQuestions={triviaQuestions}
+          />
+        </>
+      ) : (
+        <>
+          <S.EmptyStateTitle>You have no questions!</S.EmptyStateTitle>
+          <S.Link>
+            Get some <Link to="/">here</Link>
+          </S.Link>
+        </>
+      )}
+    </S.Wrapper>
   );
 };
-
-export default QuestionSlider;
