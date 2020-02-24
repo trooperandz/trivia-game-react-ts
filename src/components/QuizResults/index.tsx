@@ -8,13 +8,18 @@ import { Button } from 'components/Button';
 import { State } from 'reducers/types';
 import * as S from './styles';
 
-export const TriviaResults: FC = () => {
+export const QuizResults: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { userName } = useSelector((state: State) => state.user);
   const { triviaQuestions } = useSelector((state: State) => state.questions);
   const { isQuizCompleted } = useSelector((state: State) => state.quiz);
   const totalQuestions = triviaQuestions.length - 1;
+
+  const handlePlayAgain = () => {
+    resetAppState(dispatch);
+    history.push('/');
+  };
 
   const totalCorrectAnswers = triviaQuestions.reduce(
     (acc: number, triviaQuestion: TriviaQuestion) => {
@@ -32,7 +37,7 @@ export const TriviaResults: FC = () => {
     0,
   );
 
-  const triviaResults = triviaQuestions.map(
+  const quizResults = triviaQuestions.map(
     (triviaQuestion: TriviaQuestion, i: number) => {
       const {
         question,
@@ -53,23 +58,18 @@ export const TriviaResults: FC = () => {
             <S.AnswerTitle isCorrectAnswer={isCorrectAnswer}>
               Your answer:
             </S.AnswerTitle>
-            <S.Answer>{selectedAnswer}</S.Answer>
+            <S.Answer dangerouslySetInnerHTML={{ __html: selectedAnswer }} />
           </S.TextWrapper>
           {!isCorrectAnswer && (
             <S.TextWrapper>
               <S.AnswerTitle isCorrectAnswer>Correct Answer:</S.AnswerTitle>
-              <S.Answer>{correctAnswer}</S.Answer>
+              <S.Answer dangerouslySetInnerHTML={{ __html: correctAnswer }} />
             </S.TextWrapper>
           )}
         </S.ResultContainer>
       );
     },
   );
-
-  const handlePlayAgain = () => {
-    resetAppState(dispatch);
-    history.push('/');
-  };
 
   return (
     <S.Wrapper>
@@ -80,7 +80,7 @@ export const TriviaResults: FC = () => {
             <S.Count>
               {totalCorrectAnswers}/{totalQuestions} correct
             </S.Count>
-            {triviaResults}
+            {quizResults}
             <Button onSubmit={handlePlayAgain}>Play Again?</Button>
           </>
         ) : (

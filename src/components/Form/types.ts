@@ -18,6 +18,7 @@ export interface InputType {
   value?: string;
   error?: string;
   placeholder?: string;
+  required?: boolean;
   onChange: Function;
 }
 

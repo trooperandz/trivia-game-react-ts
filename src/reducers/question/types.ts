@@ -5,4 +5,5 @@ export type ActiveQuestion = number;
 export type QuestionsState = {
   triviaQuestions: TriviaQuestion[];
   activeQuestion: ActiveQuestion;
+  apiError: string;
 };

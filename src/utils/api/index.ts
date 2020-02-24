@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const categories = [
+  { id: '', name: 'Any ' },
   { id: 9, name: 'General Knowledge' },
   { id: 10, name: 'Entertainment: Books' },
   { id: 11, name: 'Entertainment: Film' },
@@ -28,7 +29,7 @@ export const categories = [
 ];
 
 export const types = [
-  { id: 'any', name: 'Any' },
+  { id: '', name: 'Any' },
   { id: 'boolean', name: 'True / False' },
   { id: 'multiple', name: 'Multiple Choice' },
 ];

@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 
 import { Header } from 'components/Header';
-import { TriviaResults } from 'components/TriviaResults';
+import { QuizResults } from 'components/QuizResults';
 
 export const ResultsScreen: FC = () => {
   return (
     <>
       <Header />
-      <TriviaResults />
+      <QuizResults />
     </>
   );
 };

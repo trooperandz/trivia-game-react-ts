@@ -5,13 +5,6 @@ export type FormField = {
   value: string;
 };
 
-// export type FormValues = {
-//   firstName?: string;
-//   amount?: string;
-//   category?: string;
-//   difficulty?: string;
-// };
-
 export type FormValues = {
   [key: string]: string;
 };
@@ -25,7 +18,6 @@ export type FormErrors = {
 
 export type ChildProps = {
   onFieldChange: (formfield: FormField) => void;
-  // onFieldValidate: (formfield: FormField) => void;
   formValues: FormValues;
   formErrors: FormErrors;
 };

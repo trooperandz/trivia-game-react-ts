@@ -23,6 +23,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 24px;
+  margin: 0 24px;
   height: 100%;
   align-items: center;
   justify-content: center;
@@ -78,7 +79,10 @@ export const TextWrapper = styled.div`
   margin: 12px 0;
 `;
 
-export const Answer = styled.p`
+// TODO: shouldn't need this
+export const Answer = styled.p.attrs(props => ({
+  dangerouslySetInnerHTML: props.dangerouslySetInnerHTML,
+}))`
   margin-left: 12px;
   font-size: 25px;
   color: gray;

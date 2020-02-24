@@ -1,12 +1,14 @@
 import React, { FC, useState, SyntheticEvent, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { FormValues, FormError } from './types';
 import { LoadingState } from 'types';
+import { State } from 'reducers/types';
 import { Select } from './Select';
 import { Input } from './Input';
 import { Button } from 'components/Button';
+import { ErrorText } from 'components/ErrorText';
 import { SpinnerBalls } from 'components/Button/styles';
 import * as S from './styles';
 import {
@@ -21,12 +23,14 @@ import {
   setActiveQuestion,
   setIsQuizCompleted,
   setCategory,
+  setApiError,
 } from 'actions';
 
 export const Form: FC = () => {
   const [formValues, setFormValues] = useState<FormValues>(initialFormValues);
   const [formErrors, setFormErrors] = useState<FormError>(initialFormValues);
   const [isLoading, setIsLoading] = useState<LoadingState>(false);
+  const { apiError } = useSelector((state: State) => state.questions);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -40,7 +44,8 @@ export const Form: FC = () => {
 
   const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    console.log('handleSubmit clicked');
+    setApiError('');
     let isError = false;
 
     const errors: FormError = Object.keys(formValues).reduce(
@@ -113,8 +118,11 @@ export const Form: FC = () => {
           />
         ),
       )}
+      {apiError && (
+        <ErrorText style={{ position: 'relative' }}>{apiError}</ErrorText>
+      )}
       <Button type="submit" onSubmit={handleSubmit}>
-        {isLoading ? <SpinnerBalls /> : 'Begin'}
+        {!apiError && isLoading ? <SpinnerBalls /> : 'Begin'}
       </Button>
     </S.Form>
   );
