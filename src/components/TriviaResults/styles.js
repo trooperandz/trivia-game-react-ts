@@ -12,16 +12,33 @@ const iconStyle = css`
 `;
 
 export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding-top: 102px;
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+`;
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ResultContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 32px 0;
+  padding: 24px;
 `;
 
 export const Title = styled.h1`
-  margin: 16px;
+  margin: 16px 0;
   font-size: 32px;
   color: #4aa;
 `;
@@ -40,6 +57,7 @@ export const Question = styled.h2`
   margin-left: 12px;
   font-size: 25px;
   color: #333;
+  line-height: 1.3;
 `;
 
 export const Number = styled.h2`
@@ -56,7 +74,7 @@ export const AnswerTitle = styled.p.attrs(props => ({
 
 export const TextWrapper = styled.div`
   display: flex;
-  margin: 16px 0;
+  margin: 12px 0;
 `;
 
 export const Answer = styled.p`
@@ -68,16 +86,6 @@ export const Answer = styled.p`
 export const Count = styled.p`
   font-size: 20px;
   color: gray;
-`;
-
-export const ResultContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin: 32px;
-  padding: 24px;
 `;
 
 export const Link = styled.p`

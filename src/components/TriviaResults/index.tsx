@@ -73,23 +73,25 @@ export const TriviaResults: FC = () => {
 
   return (
     <S.Wrapper>
-      {isQuizCompleted ? (
-        <>
-          <S.Title>Your results, {userName}</S.Title>
-          <S.Count>
-            {totalCorrectAnswers}/{totalQuestions} correct
-          </S.Count>
-          {triviaResults}
-          <Button onSubmit={handlePlayAgain}>Play Again?</Button>
-        </>
-      ) : (
-        <>
-          <S.EmptyStateTitle>You have no quiz results!</S.EmptyStateTitle>
-          <S.Link>
-            Go <Link to="/">here</Link> to start a quiz!
-          </S.Link>
-        </>
-      )}
+      <S.Container>
+        {isQuizCompleted ? (
+          <>
+            <S.Title>Your results, {userName}</S.Title>
+            <S.Count>
+              {totalCorrectAnswers}/{totalQuestions} correct
+            </S.Count>
+            {triviaResults}
+            <Button onSubmit={handlePlayAgain}>Play Again?</Button>
+          </>
+        ) : (
+          <>
+            <S.EmptyStateTitle>You have no quiz results!</S.EmptyStateTitle>
+            <S.Link>
+              Go <Link to="/">here</Link> to start a quiz!
+            </S.Link>
+          </>
+        )}
+      </S.Container>
     </S.Wrapper>
   );
 };

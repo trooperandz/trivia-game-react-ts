@@ -23,8 +23,8 @@ export const QuestionFooter: FC<QuestionFooterType> = props => {
   } = props;
 
   const isLastQuestion = activeQuestion === triviaQuestions.length - 1;
-  const isPhone = useMediaQuery('(max-width: 600px)');
-  console.log({ isPhone });
+  const isTablet = useMediaQuery('(max-width: 900px)');
+
   const handleNextClick = () => {
     if (isLastQuestion) {
       setIsLoading(true);
@@ -49,7 +49,7 @@ export const QuestionFooter: FC<QuestionFooterType> = props => {
         >
           Back
         </Button>
-        {isPhone ? (
+        {isTablet ? (
           <S.QuestionCounter>
             {activeQuestion + 1} / {triviaQuestions.length}
           </S.QuestionCounter>
