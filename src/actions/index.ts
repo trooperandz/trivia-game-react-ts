@@ -1,11 +1,10 @@
 import {
   setTriviaQuestions,
   setActiveQuestion,
-  setCategory,
   loadTriviaQuestions,
 } from './questions';
 import { setUserName } from './user';
-import { setIsQuizCompleted } from './quiz';
+import { setIsQuizCompleted, setCategory } from './quiz';
 
 export {
   setTriviaQuestions,

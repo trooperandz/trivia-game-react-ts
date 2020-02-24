@@ -9,12 +9,11 @@ import { State } from 'reducers/types';
 import * as S from './styles';
 
 export const TriviaResults: FC = () => {
-  const { triviaQuestions, isQuizCompleted } = useSelector(
-    (state: State) => state.quiz,
-  );
   const dispatch = useDispatch();
   const history = useHistory();
   const { userName } = useSelector((state: State) => state.user);
+  const { triviaQuestions } = useSelector((state: State) => state.questions);
+  const { isQuizCompleted } = useSelector((state: State) => state.quiz);
   const totalQuestions = triviaQuestions.length - 1;
 
   const totalCorrectAnswers = triviaQuestions.reduce(

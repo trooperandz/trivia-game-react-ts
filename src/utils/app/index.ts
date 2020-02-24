@@ -1,13 +1,13 @@
 import { Dispatch } from 'redux';
 
 import { unsetLocalStorageFormValues } from 'utils/form';
-import { setIsQuizCompleted } from 'actions/quiz';
-import { setUserName } from 'actions/user';
 import {
+  setUserName,
   setTriviaQuestions,
+  setIsQuizCompleted,
   setCategory,
   setActiveQuestion,
-} from 'actions/questions';
+} from 'actions';
 
 export const resetAppState = (dispatch: Dispatch) => {
   dispatch(setTriviaQuestions([]));

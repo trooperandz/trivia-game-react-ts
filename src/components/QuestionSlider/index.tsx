@@ -6,11 +6,14 @@ import { QuestionFooter } from 'components/QuestionFooter';
 import { Question } from 'components/Question';
 import { State } from 'reducers/types';
 import { TriviaQuestion } from 'components/Question/types';
-import { ActiveQuestion } from 'reducers/quiz/types';
+import { ActiveQuestion } from 'reducers/question/types';
 import { useWindowResize } from 'hooks';
-import { setTriviaQuestions, setActiveQuestion } from 'actions/questions';
-import { setIsQuizCompleted } from 'actions/quiz';
 import * as S from './styles';
+import {
+  setTriviaQuestions,
+  setActiveQuestion,
+  setIsQuizCompleted,
+} from 'actions';
 
 export const QuestionSlider: FC = () => {
   const [horizontalPosition, setHorizontalPosition] = useState(0);
@@ -18,12 +21,12 @@ export const QuestionSlider: FC = () => {
   // @ts-ignore
   const { viewportWidth } = useWindowResize();
   const dispatch = useDispatch();
-  const {
-    triviaQuestions,
-    activeQuestion,
-    category,
-    isQuizCompleted,
-  } = useSelector((state: State) => state.quiz);
+  const { category, isQuizCompleted } = useSelector(
+    (state: State) => state.quiz,
+  );
+  const { triviaQuestions, activeQuestion } = useSelector(
+    (state: State) => state.questions,
+  );
 
   useEffect(() => {
     setHorizontalPosition(-viewportWidth * activeQuestion);
