@@ -58,26 +58,34 @@ export const QuestionSlider: FC = () => {
     setHorizontalPosition(-viewportWidth * questionNumber);
   };
 
+  const questions = triviaQuestions.map(
+    (triviaQuestion: TriviaQuestion, i: number) => {
+      const {
+        question,
+        selected_answer: selectedAnswer,
+        correct_answer: correctAnswer,
+        incorrect_answers: incorrectAnswers,
+      } = triviaQuestion;
+
+      return (
+        <Question
+          key={`${i}-${question}`}
+          selectedAnswer={selectedAnswer}
+          question={question}
+          viewportWidth={viewportWidth}
+          onRadioChange={handleRadioChange}
+          answerChoices={[...incorrectAnswers, correctAnswer]}
+        />
+      );
+    },
+  );
+
   return (
     <S.Wrapper>
       {triviaQuestions.length ? (
         <>
           <S.SliderContainer horizontalPosition={horizontalPosition}>
-            {triviaQuestions.map(
-              (triviaQuestion: TriviaQuestion, i: number) => (
-                <Question
-                  key={`${i}-${triviaQuestion.question}`}
-                  selectedAnswer={triviaQuestion.selected_answer}
-                  question={triviaQuestion.question}
-                  viewportWidth={viewportWidth}
-                  onRadioChange={handleRadioChange}
-                  answerChoices={[
-                    ...triviaQuestion.incorrect_answers,
-                    triviaQuestion.correct_answer,
-                  ]}
-                />
-              ),
-            )}
+            {questions}
           </S.SliderContainer>
           <S.Title>{category}</S.Title>
           <QuestionFooter
