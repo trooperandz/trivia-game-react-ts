@@ -27,10 +27,11 @@ export const loadTriviaQuestions = (
   formValues: FormValues,
   history: History,
 ) => {
-  const { amount, category, difficulty } = formValues;
+  const { amount, category, type, difficulty } = formValues;
   const params = {
     amount,
     category,
+    type,
     difficulty,
   };
 

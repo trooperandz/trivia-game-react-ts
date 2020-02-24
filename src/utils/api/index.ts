@@ -27,6 +27,12 @@ export const categories = [
   { id: 32, name: 'Entertainment: Cartoon & Animations' },
 ];
 
+export const types = [
+  { id: 'any', name: 'Any' },
+  { id: 'boolean', name: 'True / False' },
+  { id: 'multiple', name: 'Multiple Choice' },
+];
+
 export const difficulties = [
   { id: 'easy', name: 'Easy' },
   { id: 'medium', name: 'Medium' },

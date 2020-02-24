@@ -35,6 +35,7 @@ export const ResultContainer = styled.div`
   border-radius: 8px;
   margin: 32px 0;
   padding: 24px;
+  width: 100%;
 `;
 
 export const Title = styled.h1`
