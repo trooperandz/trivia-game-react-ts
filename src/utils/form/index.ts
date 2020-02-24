@@ -50,3 +50,7 @@ export const getLocalStorageFormValues = () => {
 
   return undefined;
 };
+
+export const unsetLocalStorageFormValues = () => {
+  localStorage.removeItem('triviaFormValues');
+};

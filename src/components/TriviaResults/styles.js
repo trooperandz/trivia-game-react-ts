@@ -22,8 +22,8 @@ export const Wrapper = styled.div`
 
 export const Title = styled.h1`
   margin: 16px;
-  font-size: 28px;
-  color: gray;
+  font-size: 32px;
+  color: #4aa;
 `;
 
 export const IconCheck = styled.div`
@@ -44,27 +44,22 @@ export const Question = styled.h2`
 
 export const Number = styled.h2`
   font-size: 25px;
-  color: gray;
+  color: #333;
 `;
 
-export const UserAnswerTitle = styled.p.attrs(props => ({
+export const AnswerTitle = styled.p.attrs(props => ({
   isCorrectAnswer: props.isCorrectAnswer,
 }))`
   font-size: 25px;
   color: ${props => (props.isCorrectAnswer ? '#4aa' : '#BA2323')};
 `;
 
-export const CorrectAnswerTitle = styled.h3`
-  font-size: 25px;
-  color: #4aa;
-`;
-
-export const QuestionWrapper = styled.div`
+export const TextWrapper = styled.div`
   display: flex;
   margin: 16px 0;
 `;
 
-export const CorrectAnswer = styled.p`
+export const Answer = styled.p`
   margin-left: 12px;
   font-size: 25px;
   color: gray;

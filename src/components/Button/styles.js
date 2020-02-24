@@ -22,12 +22,22 @@ export const Button = styled.button.attrs(props => ({
   outline: none;
   align-self: center;
   text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: ${props => (props.secondary ? '#fff' : '#3d9999')};
+  }
 
   &:disabled {
     border: 1px solid #ccc;
     background-color: #fff;
     color: #ccc;
     pointer-events: none;
+
+    &:hover {
+      border: 1px solid #ccc;
+    }
   }
 `;
 

@@ -7,3 +7,5 @@ export const rootReducer = combineReducers({
   quiz: quizReducer,
   user: userReducer,
 });
+
+console.log({ rootReducer });
