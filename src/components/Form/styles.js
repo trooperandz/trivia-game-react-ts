@@ -20,7 +20,8 @@ export const Label = styled.label`
 `;
 
 const inputStyles = css`
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   height: 52px;
   border: 1px solid #ccc;
   border-radius: 3px;

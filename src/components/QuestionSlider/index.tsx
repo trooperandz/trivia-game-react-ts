@@ -72,7 +72,7 @@ export const QuestionSlider: FC = () => {
 
       return (
         <Question
-          key={`${i}-${question}`}
+          key={`${i}-${question}-question`}
           selectedAnswer={selectedAnswer}
           question={question}
           viewportWidth={viewportWidth}

@@ -48,7 +48,7 @@ export const QuizResults: FC = () => {
       const isCorrectAnswer = selectedAnswer === correctAnswer;
 
       return (
-        <S.ResultContainer>
+        <S.ResultContainer key={i}>
           {isCorrectAnswer ? <S.IconCheck /> : <S.IconX />}
           <S.TextWrapper>
             <S.Number>{i + 1}.</S.Number>
