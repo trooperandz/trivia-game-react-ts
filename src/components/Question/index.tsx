@@ -21,7 +21,7 @@ export const Question: FC<QuestionType> = props => {
           {answerChoices.map((answer: string, i: number) => {
             return (
               <Radio
-                key={`${i}-${answer}`}
+                key={`${i}-${question}`}
                 label={answer}
                 value={answer}
                 checked={selectedAnswer === answer}

@@ -5,8 +5,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  top: 80px;
+  top: 102px;
 `;
 
 export const Title = styled.p`

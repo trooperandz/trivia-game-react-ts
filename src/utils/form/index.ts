@@ -7,7 +7,7 @@ export const errorMessages = {
   difficulty: 'Please select a difficulty level',
 };
 
-export const initialErrorValues = {
+export const initialFormValues = {
   firstName: '',
   amount: '',
   category: '',
@@ -48,7 +48,7 @@ export const getLocalStorageFormValues = () => {
     return JSON.parse(formValues);
   }
 
-  return undefined;
+  return {};
 };
 
 export const unsetLocalStorageFormValues = () => {

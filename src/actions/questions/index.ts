@@ -41,7 +41,6 @@ export const loadTriviaQuestions = (
   return async (dispatch: Dispatch) => {
     try {
       const response = await triviaAPI.get('/', { params });
-      console.log('response.data: ', response.data);
       dispatch(setTriviaQuestions(response.data.results));
       history.push('/questions');
     } catch (e) {

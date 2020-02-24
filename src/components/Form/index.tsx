@@ -3,24 +3,29 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { FormValues, FormError } from './types';
-import { LoadingState } from '../../types';
+import { LoadingState } from 'types';
 import { Select } from './Select';
 import { Input } from './Input';
-import { Button } from '../../components/Button';
+import { Button } from 'components/Button';
+import { SpinnerBalls } from 'components/Button/styles';
+import * as S from './styles';
 import {
   inputParams,
   errorMessages,
-  initialErrorValues,
+  initialFormValues,
   getLocalStorageFormValues,
-} from '../../utils/form';
-import { setUserName } from '../../actions/user';
-import { loadTriviaQuestions, setCategory } from '../../actions/questions';
-import { SpinnerBalls } from '../Button/styles';
-import * as S from './styles';
+} from 'utils/form';
+import {
+  setUserName,
+  loadTriviaQuestions,
+  setActiveQuestion,
+  setIsQuizCompleted,
+  setCategory,
+} from 'actions';
 
 export const Form: FC = () => {
-  const [formValues, setFormValues] = useState<FormValues>({});
-  const [formErrors, setFormErrors] = useState<FormError>(initialErrorValues);
+  const [formValues, setFormValues] = useState<FormValues>(initialFormValues);
+  const [formErrors, setFormErrors] = useState<FormError>(initialFormValues);
   const [isLoading, setIsLoading] = useState<LoadingState>(false);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -28,7 +33,7 @@ export const Form: FC = () => {
   useEffect(() => {
     const values = getLocalStorageFormValues();
 
-    if (values) {
+    if (Object.keys(values).length) {
       setFormValues(values);
     }
   }, []);
@@ -60,6 +65,10 @@ export const Form: FC = () => {
       localStorage.setItem('triviaFormValues', JSON.stringify(formValues));
       dispatch(loadTriviaQuestions(formValues, history));
       dispatch(setUserName(formValues.firstName));
+
+      // Remove any state from questions slider
+      dispatch(setActiveQuestion(0));
+      dispatch(setIsQuizCompleted(false));
     }
   };
 

@@ -9,9 +9,3 @@ export const setIsQuizCompleted = (isQuizCompleted: boolean) => ({
   type: SET_IS_QUIZ_COMPLETED,
   payload: isQuizCompleted,
 });
-
-// export const resetQuizState = () => {
-//   return (dispatch) => {
-
-//   }
-// }
