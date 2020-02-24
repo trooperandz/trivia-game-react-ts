@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { debounce } from 'lodash';
 
-/**
- * Return window size on initial render and on window resize event
- */
+// Return window size on initial render and on window resize event
 export const useWindowResize = () => {
   const [windowSize, setWindowSize] = useState({});
 
@@ -40,4 +38,25 @@ export const useWindowResize = () => {
   });
 
   return windowSize;
+};
+
+// For js media query needs
+export const useMediaQuery = (query: string) => {
+  const mediaQuery = window.matchMedia(query);
+
+  const [isMatching, setIsMatching] = useState(mediaQuery.matches);
+
+  const checkIfIsMatching = () => {
+    setIsMatching(mediaQuery.matches);
+  };
+
+  useEffect(() => {
+    mediaQuery.addListener(checkIfIsMatching);
+
+    return () => {
+      mediaQuery.removeListener(checkIfIsMatching);
+    };
+  }, []);
+
+  return isMatching;
 };

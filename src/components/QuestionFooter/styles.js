@@ -18,3 +18,8 @@ export const Container = styled.div`
   height: 100%;
   padding: 0 24px;
 `;
+
+export const QuestionCounter = styled.div`
+  color: gray;
+  font-size: 24px;
+`;

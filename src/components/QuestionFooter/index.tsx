@@ -6,6 +6,7 @@ import { QuestionIndicator } from 'components/QuestionIndicator';
 import { QuestionFooterType } from './types';
 import { LoadingState } from 'types';
 import { SpinnerBalls } from 'components/Button/styles';
+import { useMediaQuery } from 'hooks';
 import * as S from './styles';
 
 const buttonStyle = { maxWidth: '116px' };
@@ -22,7 +23,8 @@ export const QuestionFooter: FC<QuestionFooterType> = props => {
   } = props;
 
   const isLastQuestion = activeQuestion === triviaQuestions.length - 1;
-
+  const isPhone = useMediaQuery('(max-width: 600px)');
+  console.log({ isPhone });
   const handleNextClick = () => {
     if (isLastQuestion) {
       setIsLoading(true);
@@ -36,7 +38,6 @@ export const QuestionFooter: FC<QuestionFooterType> = props => {
     }
   };
 
-  // TODO: do we want a completely separate submit button (can use isQuizCompleted)?
   return (
     <S.Wrapper>
       <S.Container>
@@ -48,11 +49,17 @@ export const QuestionFooter: FC<QuestionFooterType> = props => {
         >
           Back
         </Button>
-        <QuestionIndicator
-          questionNumber={activeQuestion}
-          triviaQuestions={triviaQuestions}
-          onProgressClick={onNavigationClick}
-        />
+        {isPhone ? (
+          <S.QuestionCounter>
+            {activeQuestion + 1} / {triviaQuestions.length}
+          </S.QuestionCounter>
+        ) : (
+          <QuestionIndicator
+            questionNumber={activeQuestion}
+            triviaQuestions={triviaQuestions}
+            onProgressClick={onNavigationClick}
+          />
+        )}
         <Button
           secondary={!isQuizCompleted}
           onSubmit={handleNextClick}
