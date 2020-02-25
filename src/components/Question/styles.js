@@ -27,10 +27,16 @@ export const QuestionWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const Question = styled.div`
+export const Question = styled.h1`
   padding: 24px;
   max-width: 600px;
   line-height: 1.2;
+  font-size: 28px;
+  line-height: 1.3;
+
+  @media screen and (min-width: 375px) {
+    font-size: 38px;
+  }
 `;
 
 export const ButtonWrapper = styled.div`

@@ -11,6 +11,7 @@ export const Label = styled.label`
   height: 24px;
   font-size: 18px;
   color: gray;
+  cursor: pointer;
 
   &:before {
     content: '';
@@ -23,6 +24,7 @@ export const Label = styled.label`
     border-radius: 50%;
     border: 1px solid #767676;
     background-color: #fff;
+    cursor: pointer;
   }
 `;
 

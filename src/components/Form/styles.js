@@ -20,7 +20,6 @@ export const Label = styled.label`
 `;
 
 const inputStyles = css`
-  width: 100%;
   max-width: 400px;
   height: 52px;
   border: 1px solid #ccc;
@@ -29,6 +28,7 @@ const inputStyles = css`
   margin: 8px 0 16px;
   font-size: 18px;
   color: gray;
+  padding: 0 6px;
 
   &:placeholder {
     color: gray;
@@ -41,7 +41,6 @@ export const Select = styled.select.attrs(props => ({
   ${inputStyles}
 `;
 
-// TODO: browser applying different styles to select and this
 export const Input = styled.input.attrs(props => ({
   onChange: props.onChange,
 }))`

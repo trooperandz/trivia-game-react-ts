@@ -3,7 +3,8 @@ export type ButtonType = {
   type?: string;
   disabled?: boolean;
   secondary?: boolean;
+  dataTest?: string;
   style?: {
-    [key: string]: string;
+    [key: string]: string | number;
   };
 };

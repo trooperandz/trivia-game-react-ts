@@ -36,6 +36,7 @@ export const QuestionSlider: FC = () => {
   const handleRadioChange = (e: SyntheticEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
     const nextQuestion = activeQuestion + 1;
+    const canMoveToNext = nextQuestion !== triviaQuestions.length;
 
     triviaQuestions[activeQuestion].selected_answer = value;
 
@@ -45,12 +46,12 @@ export const QuestionSlider: FC = () => {
 
     dispatch(setTriviaQuestions([...triviaQuestions]));
 
-    if (isQuestionsUnanswered) {
+    if (isQuestionsUnanswered && canMoveToNext) {
       setTimeout(() => {
         dispatch(setActiveQuestion(nextQuestion));
         setHorizontalPosition(-viewportWidth * nextQuestion);
       }, 400);
-    } else {
+    } else if (!isQuestionsUnanswered) {
       dispatch(setIsQuizCompleted(true));
     }
   };
@@ -72,7 +73,7 @@ export const QuestionSlider: FC = () => {
 
       return (
         <Question
-          key={`${i}-${question}-question`}
+          key={`${i}-${question}`}
           selectedAnswer={selectedAnswer}
           question={question}
           viewportWidth={viewportWidth}
@@ -87,7 +88,10 @@ export const QuestionSlider: FC = () => {
     <S.Wrapper>
       {triviaQuestions.length ? (
         <>
-          <S.SliderContainer horizontalPosition={horizontalPosition}>
+          <S.SliderContainer
+            data-testId="slider-container"
+            horizontalPosition={horizontalPosition}
+          >
             {questions}
           </S.SliderContainer>
           <S.Title>{category}</S.Title>
@@ -100,7 +104,9 @@ export const QuestionSlider: FC = () => {
         </>
       ) : (
         <>
-          <S.EmptyStateTitle>You have no questions!</S.EmptyStateTitle>
+          <S.EmptyStateTitle data-testid="empty-state">
+            You have no questions!
+          </S.EmptyStateTitle>
           <S.Link>
             Get some <Link to="/">here</Link>
           </S.Link>

@@ -5,7 +5,17 @@ import { ErrorText } from 'components/ErrorText';
 import * as S from '../styles';
 
 export const Select: FC<SelectType> = props => {
-  const { label, id, name, options, value, required, error, onChange } = props;
+  const {
+    label,
+    id,
+    name,
+    options,
+    value,
+    required,
+    dataTest,
+    error,
+    onChange,
+  } = props;
 
   return (
     <S.InputWrapper>
@@ -13,7 +23,12 @@ export const Select: FC<SelectType> = props => {
       <S.Select id={id} name={name} onChange={onChange} value={value}>
         {!value && required && <option value="">Select...</option>}
         {options.map((option: Option) => (
-          <option key={option.id} value={option.id} data-category={option.name}>
+          <option
+            key={option.id}
+            value={option.id}
+            data-category={option.name}
+            data-testid={dataTest}
+          >
             {option.name}
           </option>
         ))}
