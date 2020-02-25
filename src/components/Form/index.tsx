@@ -44,7 +44,6 @@ export const Form: FC = () => {
 
   const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('handleSubmit clicked');
     setApiError('');
     let isError = false;
 

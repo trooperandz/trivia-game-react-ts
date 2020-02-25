@@ -11,6 +11,7 @@ export const Label = styled.label`
   height: 24px;
   font-size: 18px;
   color: gray;
+  line-height: 1.2;
   cursor: pointer;
 
   &:before {

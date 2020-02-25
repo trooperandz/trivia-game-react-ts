@@ -1,9 +1,26 @@
 import styled, { css, keyframes } from 'styled-components';
 
+const moveInBottom = keyframes`
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 2rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+`;
+
+const animation = css`
+  ${moveInBottom} 0.3s ease-out .4s
+`;
+
 export const Button = styled.button.attrs(props => ({
   onClick: props.onClick,
   type: props.type,
   secondary: props.secondary,
+  animated: props.animated,
 }))`
   display: flex;
   align-items: center;
@@ -24,6 +41,8 @@ export const Button = styled.button.attrs(props => ({
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
+  animation: ${props => (props.animated ? animation : 'none')};
+  animation-fill-mode: ${props => (props.animated ? 'backwards' : 'none')};
 
   &:hover {
     background-color: ${props => (props.secondary ? '#fff' : '#3d9999')};
@@ -62,7 +81,7 @@ const spScaleAlphaAfter = keyframes`
 
 const spinnerStyles = css`
   border-radius: 50%;
-  background-color: #000;
+  background-color: #fff;
   width: 18px;
   height: 18px;
   transform-origin: center center;
@@ -72,7 +91,7 @@ const spinnerStyles = css`
 export const SpinnerBalls = styled.div`
   ${spinnerStyles}
   position: relative;
-  background-color: rgba(#000, 1);
+  background-color: rgba(#fff, 1);
   opacity: 1;
   animation: ${spScaleAlpha} 1s infinite linear;
 

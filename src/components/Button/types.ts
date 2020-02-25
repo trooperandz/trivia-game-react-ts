@@ -4,6 +4,7 @@ export type ButtonType = {
   disabled?: boolean;
   secondary?: boolean;
   dataTest?: string;
+  animated?: boolean;
   style?: {
     [key: string]: string | number;
   };

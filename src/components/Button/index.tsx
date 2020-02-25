@@ -11,6 +11,7 @@ export const Button: FC<ButtonType> = props => {
     style,
     disabled,
     dataTest,
+    animated,
     children,
   } = props;
 
@@ -21,6 +22,7 @@ export const Button: FC<ButtonType> = props => {
       style={style}
       onClick={onSubmit}
       disabled={disabled}
+      animated={animated}
       data-testid={dataTest}
     >
       {children}

@@ -31,10 +31,10 @@ export const Question = styled.h1`
   padding: 24px;
   max-width: 600px;
   line-height: 1.2;
-  font-size: 28px;
+  font-size: 32px;
   line-height: 1.3;
 
-  @media screen and (min-width: 375px) {
+  @media screen and (min-width: 380px) {
     font-size: 38px;
   }
 `;
@@ -49,9 +49,16 @@ export const ButtonWrapper = styled.div`
 
 export const RadioWrapper = styled.div`
   position: relative;
-  left: 88px;
+  left: 64px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 8px;
+  max-width: 300px;
+
+  @media screen and (min-width: 380px) {
+    left: 88px;
+    font-size: 38px;
+    max-width: none;
+  }
 `;

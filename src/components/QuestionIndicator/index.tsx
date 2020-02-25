@@ -14,6 +14,7 @@ export const QuestionIndicator: FC<QuestionIndicatorType> = props => {
           key={i}
           onClick={() => onProgressClick(i)}
           isActive={i === questionNumber}
+          isAnswered={triviaQuestion.selected_answer !== undefined}
         >
           {i + 1}
         </S.QuestionNumber>
