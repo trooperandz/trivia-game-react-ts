@@ -59,6 +59,7 @@ export const QuestionFooter: FC<QuestionFooterType> = props => {
             onSubmit={handleSubmit}
             style={{ ...submitButtonStyle, ...submitButtonPosition }}
             animated
+            dataTest="submit-quiz-btn"
           >
             {isLoading ? <SpinnerBalls /> : 'Submit Quiz'}
           </Button>
