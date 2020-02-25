@@ -4,7 +4,7 @@ import {
   SET_API_ERROR,
 } from 'actions/actionTypes';
 
-const initialState = {
+export const initialState = {
   triviaQuestions: [],
   activeQuestion: 0,
   apiError: '',

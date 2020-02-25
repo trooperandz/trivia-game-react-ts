@@ -1,6 +1,6 @@
 import { SET_USER_NAME } from 'actions/actionTypes';
 
-const initialState = {
+export const initialState = {
   userName: '',
 };
 
