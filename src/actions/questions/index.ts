@@ -34,6 +34,7 @@ export const setApiError = (error: string) => ({
 });
 
 // Send and receive trivia API request
+// TODO need to test this action too
 export const loadTriviaQuestions = (
   formValues: FormValues,
   history: History,

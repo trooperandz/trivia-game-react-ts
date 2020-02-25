@@ -3,6 +3,7 @@ import {
   SET_ACTIVE_QUESTION,
   SET_API_ERROR,
 } from 'actions/actionTypes';
+import { Action } from '../types';
 
 export const initialState = {
   triviaQuestions: [],
@@ -10,7 +11,7 @@ export const initialState = {
   apiError: '',
 };
 
-export const questionReducer = (state = initialState, action: any) => {
+export const questionReducer = (state = initialState, action: Action) => {
   const { type, payload } = action;
 
   switch (type) {
