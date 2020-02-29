@@ -35,7 +35,9 @@ export const useWindowResize = () => {
     const debouncedResize = debounce(handleResize, 300);
 
     window.addEventListener('resize', debouncedResize);
-  });
+
+    return () => window.removeEventListener('resize', debouncedResize);
+  }, []);
 
   return windowSize;
 };
