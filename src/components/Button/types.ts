@@ -1,11 +1,7 @@
 export type ButtonType = {
-  onSubmit: Function;
-  type?: string;
-  disabled?: boolean;
+  onClick: Function;
   secondary?: boolean;
   dataTest?: string;
   animated?: boolean;
-  style?: {
-    [key: string]: string | number;
-  };
+  [key: string]: any;
 };

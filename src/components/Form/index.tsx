@@ -120,7 +120,7 @@ export const Form: FC = () => {
       {apiError && (
         <ErrorText style={{ position: 'relative' }}>{apiError}</ErrorText>
       )}
-      <Button type="submit" onSubmit={handleSubmit}>
+      <Button type="submit" onClick={handleSubmit}>
         {!apiError && isLoading ? <SpinnerBalls /> : 'Begin'}
       </Button>
     </S.Form>

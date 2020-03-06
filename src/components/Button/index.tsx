@@ -4,26 +4,15 @@ import { ButtonType } from './types';
 import * as S from './styles';
 
 export const Button: FC<ButtonType> = props => {
-  const {
-    onSubmit,
-    type,
-    secondary,
-    style,
-    disabled,
-    dataTest,
-    animated,
-    children,
-  } = props;
+  const { onClick, secondary, dataTest, animated, children, ...rest } = props;
 
   return (
     <S.Button
       secondary={secondary}
-      type={type}
-      style={style}
-      onClick={onSubmit}
-      disabled={disabled}
+      onClick={onClick}
       animated={animated}
       data-testid={dataTest}
+      {...rest}
     >
       {children}
     </S.Button>

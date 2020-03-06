@@ -81,7 +81,7 @@ export const QuizResults: FC = () => {
               {totalCorrectAnswers}/{totalQuestions} correct
             </S.Count>
             {quizResults}
-            <Button onSubmit={handlePlayAgain}>Play Again?</Button>
+            <Button onClick={handlePlayAgain}>Play Again?</Button>
           </>
         ) : (
           <>

@@ -55,9 +55,7 @@ export const useMediaQuery = (query: string) => {
   useEffect(() => {
     mediaQuery.addListener(checkIfIsMatching);
 
-    return () => {
-      mediaQuery.removeListener(checkIfIsMatching);
-    };
+    return () => mediaQuery.removeListener(checkIfIsMatching);
   }, []);
 
   return isMatching;

@@ -48,7 +48,7 @@ export const QuestionFooter: FC<QuestionFooterType> = props => {
       <S.Container>
         <Button
           secondary
-          onSubmit={() => onNavigationClick(activeQuestion - 1)}
+          onClick={() => onNavigationClick(activeQuestion - 1)}
           style={navigateButtonStyle}
           disabled={activeQuestion === 0}
         >
@@ -56,7 +56,7 @@ export const QuestionFooter: FC<QuestionFooterType> = props => {
         </Button>
         {isQuizCompleted && (
           <Button
-            onSubmit={handleSubmit}
+            onClick={handleSubmit}
             style={{ ...submitButtonStyle, ...submitButtonPosition }}
             animated
             dataTest="submit-quiz-btn"
@@ -77,7 +77,7 @@ export const QuestionFooter: FC<QuestionFooterType> = props => {
         )}
         <Button
           secondary
-          onSubmit={() => onNavigationClick(activeQuestion + 1)}
+          onClick={() => onNavigationClick(activeQuestion + 1)}
           style={navigateButtonStyle}
           disabled={isLastQuestion}
         >
