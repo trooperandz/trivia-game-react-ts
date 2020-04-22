@@ -1,4 +1,5 @@
-## React/TypeScript/Styled Components trivia game
+## React/TypeScript/Styled Components trivia application
+A trivia application that uses the Open Trivia DB to generate questions
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and the [cra-template-typescript](https://www.npmjs.com/package/cra-template-typescript).
 
